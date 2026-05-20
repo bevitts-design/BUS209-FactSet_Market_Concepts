@@ -1,1 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUS209 · FactSet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
+/* ═══════════════════════════════════════════════════════
+   BUS209 — Steel Blue #2D7DD2
+   Shared foundation: Midnight Navy / Cloud White
+   60-30-10: Surface 60% / Navy 30% / Steel Blue 10%
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* Shared foundation */
+  --midnight:    #0A2540;
+  --slate:       #425466;
+  --muted:       #8898AA;
+  --surface:     #F6F9FC;
+  --panel:       #FFFFFF;
+  --border:      #E3E8EF;
+  --border-dark: #C8D6E5;
+
+  /* BUS209 accent — Steel Blue */
+  --accent:     #2D7DD2;
+  --accent-dim: rgba(45, 125, 210, 0.08);
+  --accent-mid: rgba(45, 125, 210, 0.18);
+
+  /* Rule #6: Modular scale ratio 1.333 */
+  --text-xs:   0.694rem;
+  --text-sm:   0.833rem;
+  --text-base: 1rem;
+  --text-md:   1.2rem;
+  --text-lg:   1.44rem;
+  --text-xl:   1.728rem;
+  --text-2xl:  2.074rem;
+  --text-3xl:  2.488rem;
+  --text-hero: clamp(2.8rem, 6vw, 4rem);
+
+  /* Rule #9: Line heights */
+  --lh-display: 1.1;
+  --lh-heading: 1.2;
+  --lh-body:    1.5;
+
+  /* Rule #15: 8pt grid */
+  --sp-1:   8px;
+  --sp-2:  16px;
+  --sp-3:  24px;
+  --sp-4:  32px;
+  --sp-6:  48px;
+  --sp-8:  64px;
+  --sp-12: 96px;
+  --sp-16: 128px;
+
+  /* Rule #16: 12-col grid */
+  --grid-gap: 32px;
+  --max-w:    1152px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--surface);
+  color: var(--midnight);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  line-height: var(--lh-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rule #5: Safe-zone */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--sp-4);
+}
+
+/* ══════════════════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════════════════ */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--sp-4);
+}
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: var(--sp-2);
+  text-decoration: none;
+}
+.nav-logo {
+  width: 32px; height: 32px;
+  background: var(--accent);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.nav-course  { font-size: var(--text-sm); font-weight: 600; color: var(--midnight); letter-spacing: -0.01em; }
+.nav-subtitle { font-size: var(--text-xs); color: var(--muted); margin-top: 1px; }
+.nav-links { display: flex; gap: var(--sp-3); align-items: center; list-style: none; }
+.nav-links a { font-size: var(--text-sm); font-weight: 500; color: var(--slate); text-decoration: none; transition: color 0.15s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-cta {
+  font-size: var(--text-sm); font-weight: 500;
+  color: var(--panel); background: var(--accent);
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: 6px; text-decoration: none;
+  transition: opacity 0.15s;
+}
+.nav-cta:hover { opacity: 0.88; }
+
+/* ══════════════════════════════════════════════════════
+   HERO — Rule #19: F-pattern, left-aligned
+   Rule #4: ≥60% whitespace
+   ══════════════════════════════════════════════════════ */
+.hero {
+  padding-top: var(--sp-16);
+  padding-bottom: var(--sp-16);
+  padding-left: var(--sp-4);
+  padding-right: var(--sp-4);
+  position: relative;
+  overflow: hidden;
+}
+/* Subtle data-terminal grid texture */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(45,125,210,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45,125,210,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;   /* Rule #15: 6 × 8pt */
+  pointer-events: none;
+}
+/* Gradient glow top-right */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -160px; right: -160px;
+  width: 640px; height: 640px;
+  background: radial-gradient(circle at 60% 40%,
+    rgba(45,125,210,0.10) 0%,
+    rgba(45,125,210,0.03) 50%,
+    transparent 70%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative; z-index: 1;
+}
+
+/* Rule #19: eyebrow anchors top-left F-scan */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: var(--sp-1);
+  font-size: var(--text-xs); font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: var(--sp-3);
+  opacity: 0; animation: revealUp 0.6s 0.1s ease forwards;
+}
+.eyebrow-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+
+/* Rule #8: ≥48px hero title */
+.hero-title {
+  font-size: var(--text-hero);
+  font-weight: 700;
+  line-height: var(--lh-display);
+  letter-spacing: -0.03em;
+  color: var(--midnight);
+  max-width: 760px;
+  margin-bottom: var(--sp-3);
+  opacity: 0; animation: revealUp 0.6s 0.2s ease forwards;
+}
+/* Rule #13: accent used once */
+.hero-title mark { background: none; color: var(--accent); -webkit-text-fill-color: var(--accent); }
+
+/* Rule #10: ≤60 chars → max-width 560px */
+.hero-desc {
+  font-size: var(--text-md);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  color: var(--slate);
+  max-width: 560px;
+  margin-bottom: var(--sp-6);
+  opacity: 0; animation: revealUp 0.6s 0.3s ease forwards;
+}
+.hero-actions {
+  display: flex; align-items: center; gap: var(--sp-2);
+  opacity: 0; animation: revealUp 0.6s 0.4s ease forwards;
+}
+.btn-primary {
+  font-size: var(--text-base); font-weight: 500;
+  color: var(--panel); background: var(--accent);
+  padding: 14px var(--sp-4); border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 16px rgba(45,125,210,0.28);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,125,210,0.36); }
+.btn-ghost {
+  font-size: var(--text-base); font-weight: 500;
+  color: var(--slate); text-decoration: none;
+  display: flex; align-items: center; gap: var(--sp-1);
+  transition: color 0.15s;
+}
+.btn-ghost:hover { color: var(--accent); }
+.btn-ghost:hover svg { transform: translateX(3px); }
+.btn-ghost svg { transition: transform 0.15s; }
+
+/* Rule #3: 3 stats = ideal chunk count */
+.hero-stats {
+  display: flex; gap: var(--sp-6);
+  margin-top: var(--sp-12);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--border);
+  opacity: 0; animation: revealUp 0.6s 0.55s ease forwards;
+}
+.stat { display: flex; flex-direction: column; gap: 4px; }
+.stat-value { font-size: var(--text-2xl); font-weight: 700; letter-spacing: -0.03em; color: var(--midnight); line-height: 1; }
+.stat-label { font-size: var(--text-xs); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* ══════════════════════════════════════════════════════
+   SHARED SECTION ELEMENTS
+   ══════════════════════════════════════════════════════ */
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+.section-wrap { padding: var(--sp-12) var(--sp-4); }
+.section-head { margin-bottom: var(--sp-8); }
+.label-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--text-xs); font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: var(--sp-2);
+}
+.section-h2 {
+  font-size: var(--text-3xl); font-weight: 700;
+  letter-spacing: -0.03em; line-height: var(--lh-heading);
+  color: var(--midnight); margin-bottom: var(--sp-2);
+}
+.section-sub {
+  font-size: var(--text-md); color: var(--slate);
+  line-height: var(--lh-body); max-width: 540px;
+}
+
+/* ══════════════════════════════════════════════════════
+   MODULES — Rule #16: 3-col lesson grid
+   ══════════════════════════════════════════════════════ */
+.modules-section { background: var(--panel); }
+
+/* ── FactSet skill modules ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-8);
+}
+
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--sp-4);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.skill-card:hover {
+  border-color: var(--border-dark);
+  box-shadow: 0 8px 32px rgba(10,37,64,0.08);
+  transform: translateY(-2px);
+}
+/* Rule #13: ONE card gets accent — the lead skill */
+.skill-card.lead {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.skill-card.lead:hover { box-shadow: 0 8px 32px rgba(45,125,210,0.14); }
+
+.skill-icon {
+  width: 40px; height: 40px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--sp-3);
+  font-size: 18px;
+}
+.skill-card.lead .skill-icon {
+  background: var(--accent); border-color: var(--accent);
+}
+.skill-num {
+  font-size: var(--text-xs); font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: var(--sp-2);
+}
+.skill-card.lead .skill-num { color: var(--accent); }
+.skill-name {
+  font-size: var(--text-xl); font-weight: 700;
+  letter-spacing: -0.02em; color: var(--midnight);
+  line-height: var(--lh-heading); margin-bottom: var(--sp-1);
+}
+.skill-desc {
+  font-size: var(--text-base); color: var(--slate);
+  line-height: var(--lh-body);
+}
+
+/* ── Lesson modules ── */
+.module-block { margin-bottom: var(--sp-12); }
+.module-block:last-child { margin-bottom: 0; }
+.module-header {
+  display: flex; align-items: baseline; gap: var(--sp-2);
+  margin-bottom: var(--sp-4); padding-bottom: var(--sp-2);
+  border-bottom: 1px solid var(--border);
+}
+.module-badge {
+  font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-dim);
+  border: 1px solid var(--accent-mid);
+  border-radius: 4px; padding: 3px 8px; white-space: nowrap;
+}
+.module-title {
+  font-size: var(--text-lg); font-weight: 600;
+  letter-spacing: -0.01em; color: var(--midnight);
+}
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-2);
+}
+.lesson-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--sp-3);
+  text-decoration: none; color: inherit;
+  position: relative; overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.lesson-card:not(.disabled):hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(45,125,210,0.10);
+  transform: translateY(-1px);
+}
+.lesson-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--accent);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 0.2s ease;
+  border-radius: 0 0 0 8px;
+}
+.lesson-card:not(.disabled):hover::before { transform: scaleY(1); }
+.lesson-code {
+  font-size: var(--text-xs); font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: var(--sp-1);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.lesson-title {
+  font-size: var(--text-base); font-weight: 600;
+  color: var(--midnight); line-height: 1.35; margin-bottom: var(--sp-1);
+}
+.lesson-topic {
+  font-size: var(--text-sm); color: var(--slate);
+  line-height: var(--lh-body); margin-bottom: var(--sp-2);
+}
+.lesson-cta {
+  font-size: var(--text-xs); font-weight: 600;
+  color: var(--accent); letter-spacing: 0.04em;
+  display: inline-flex; align-items: center; gap: 4px;
+  text-transform: uppercase;
+}
+.lesson-card.disabled { opacity: 0.45; cursor: default; }
+.lesson-card.disabled::before { display: none; }
+.coming-badge {
+  font-size: var(--text-xs); font-weight: 500;
+  color: var(--muted); font-family: 'SF Mono','Fira Code',monospace;
+  letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════════════════════════
+   FOOTER
+   ══════════════════════════════════════════════════════ */
+footer {
+  background: var(--midnight);
+  padding: var(--sp-8) var(--sp-4);
+}
+.footer-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: var(--sp-4);
+}
+.footer-brand { display: flex; align-items: center; gap: var(--sp-2); margin-bottom: var(--sp-2); }
+.footer-logo {
+  width: 28px; height: 28px; background: var(--accent);
+  border-radius: 5px; display: flex; align-items: center; justify-content: center;
+}
+.footer-name { font-size: var(--text-sm); font-weight: 600; color: rgba(255,255,255,0.9); }
+.footer-meta { font-size: var(--text-xs); color: rgba(255,255,255,0.3); line-height: 2; letter-spacing: 0.04em; }
+.footer-right { text-align: right; }
+.footer-right .footer-meta { text-align: right; }
+
+/* ══════════════════════════════════════════════════════
+   ANIMATIONS — prefers-reduced-motion
+   ══════════════════════════════════════════════════════ */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-section {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-section.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .fade-section { opacity: 1; transform: none; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .skills-grid   { grid-template-columns: 1fr; }
+  .lessons-grid  { grid-template-columns: 1fr 1fr; }
+  .hero-stats    { gap: var(--sp-4); }
+  .footer-inner  { flex-direction: column; }
+  .footer-right  { text-align: left; }
+  .footer-right .footer-meta { text-align: left; }
+  .nav-links     { display: none; }
+}
+@media (max-width: 600px) {
+  .lessons-grid { grid-template-columns: 1fr; }
+  .hero-stats   { flex-direction: column; gap: var(--sp-3); }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ NAV ════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <div class="nav-logo">
+        <svg viewBox="0 0 18 18" width="18" height="18" fill="none">
+          <rect x="2" y="2" width="14" height="3" rx="1" fill="white" opacity="0.9"/>
+          <rect x="2" y="7.5" width="10" height="3" rx="1" fill="white" opacity="0.7"/>
+          <rect x="2" y="13" width="12" height="3" rx="1" fill="white" opacity="0.5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="nav-course">BUS209</div>
+        <div class="nav-subtitle">FactSet</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#lessons">Lessons</a></li>
+    </ul>
+    <a class="nav-cta" href="#">Open Canvas</a>
+  </div>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <p class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      Endicott College · Gerrish School of Business · Fall 2026
+    </p>
+
+    <h1 class="hero-title">
+      Learn the terminal<br><mark>analysts actually use</mark>.
+    </h1>
+
+    <p class="hero-desc">
+      FactSet. Real data. Professional research skills from day one.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn-primary" href="#lessons">Start Learning</a>
+      <a class="btn-ghost" href="#">
+        View syllabus
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Rule #3: 3 chunks -->
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-value">3</span>
+        <span class="stat-label">Skill Tracks</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">50</span>
+        <span class="stat-label">Min Class Period</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">3</span>
+        <span class="stat-label">Credits</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ════════════ SKILL TRACKS ════════════ -->
+<section class="modules-section section-wrap fade-section" id="skills">
+  <div class="container">
+
+    <div class="section-head">
+      <p class="label-tag">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+        Course Architecture
+      </p>
+      <h2 class="section-h2">Three skill tracks. One platform.</h2>
+      <p class="section-sub">Navigation, data retrieval, and professional output — the full FactSet workflow.</p>
+    </div>
+
+    <!-- Rule #16: 3 × 4-col on 12-col grid -->
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <p class="skill-num">Track 01</p>
+        <div class="skill-icon">🗺️</div>
+        <h3 class="skill-name">Navigation</h3>
+        <p class="skill-desc">Interface orientation, search, workstation setup, and moving through FactSet like a professional.</p>
+      </div>
+
+      <!-- Lead track: Data Retrieval -->
+      <div class="skill-card lead">
+        <p class="skill-num">Track 02</p>
+        <div class="skill-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="3" width="14" height="3" rx="1" fill="white" opacity="0.9"/>
+            <rect x="3" y="8.5" width="10" height="3" rx="1" fill="white" opacity="0.7"/>
+            <rect x="3" y="14" width="12" height="3" rx="1" fill="white" opacity="0.5"/>
+          </svg>
+        </div>
+        <h3 class="skill-name">Data Retrieval</h3>
+        <p class="skill-desc">Pulling financials, pricing, estimates, and screening criteria. The core FactSet skill every analyst needs.</p>
+      </div>
+
+      <div class="skill-card">
+        <p class="skill-num">Track 03</p>
+        <div class="skill-icon">📄</div>
+        <h3 class="skill-name">Research Output</h3>
+        <p class="skill-desc">Building reports, exporting to Excel, creating professional deliverables from FactSet data.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ════════════ LESSONS ════════════ -->
+<section class="modules-section section-wrap fade-section" id="lessons">
+  <div class="container">
+
+    <div class="section-head">
+      <p class="label-tag">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+        All Lessons
+      </p>
+      <h2 class="section-h2">Your complete course map.</h2>
+      <p class="section-sub">Every lesson, every module — start with what's live, return as more unlock.</p>
+    </div>
+
+    <!-- ── TRACK 01: NAVIGATION ── -->
+    <div class="module-block fade-section">
+      <div class="module-header">
+        <span class="module-badge">NAV · M01</span>
+        <span class="module-title">Getting Oriented in FactSet</span>
+      </div>
+      <div class="lessons-grid">
+
+        <a class="lesson-card" href="#">
+          <div class="lesson-code">NAV-M01-L01</div>
+          <div class="lesson-title">FactSet Workstation Setup</div>
+          <div class="lesson-topic">Logging in, customizing your workspace, and understanding the FactSet interface layout</div>
+          <span class="lesson-cta">
+            Open lesson
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+        <a class="lesson-card" href="#">
+          <div class="lesson-code">NAV-M01-L02</div>
+          <div class="lesson-title">Search & Company Lookup</div>
+          <div class="lesson-topic">Finding companies, tickers, and funds — navigating the FactSet universe efficiently</div>
+          <span class="lesson-cta">
+            Open lesson
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2.5 6h7M6 2.5l3.5 3.5L6 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+
+        <a class="lesson-card disabled" href="#">
+          <div class="lesson-code">NAV-M01-L03</div>
+          <div class="lesson-title">Portfolios & Watchlists</div>
+          <div class="lesson-topic">Creating and managing watchlists, building a personal portfolio tracker</div>
+          <span class="coming-badge">Coming soon</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ── TRACK 02: DATA RETRIEVAL ── -->
+    <div class="module-block fade-section">
+      <div class="module-header">
+        <span class="module-badge">DATA · M01</span>
+        <span class="module-title">Financials & Market Data</span>
+      </div>
+      <div class="lessons-grid">
+
+        <a class="lesson-card disabled" href="#">
+          <div class="lesson-code">DATA-M01-L01</div>
+          <div class="lesson-title">Income Statement Data</div>
+          <div class="lesson-topic">Pulling revenue, earnings, margins — standardized vs. as-reported financials</div>
+          <span class="coming-badge">Coming soon</span>
+        </a>
+
+        <a class="lesson-card disabled" href="#">
+          <div class="lesson-code">DATA-M01-L02</div>
+          <div class="lesson-title">Price & Return History</div>
+          <div class="lesson-topic">Downloading historical price series, calculating returns, exporting to Excel</div>
+          <span class="coming-badge">Coming soon</span>
+        </a>
+
+        <a class="lesson-card disabled" href="#">
+          <div class="lesson-code">DATA-M01-L03</div>
+          <div class="lesson-title">Estimates & Consensus</div>
+          <div class="lesson-topic">Analyst estimates, EPS consensus, estimate revisions, and surprise history</div>
+          <span class="coming-badge">Coming soon</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ── TRACK 03: RESEARCH OUTPUT ── -->
+    <div class="module-block fade-section">
+      <div class="module-header">
+        <span class="module-badge">OUTPUT · M01</span>
+        <span class="module-title">Building Professional Deliverables</span>
+      </div>
+      <div class="lessons-grid">
+
+        <a class="lesson-card disabled" href="#">
+          <div class="lesson-code">OUTPUT-M01-L01</div>
+          <div class="lesson-title">Exporting to Excel</div>
+          <div class="lesson-topic">FactSet Office Tools, linked Excel models, refreshing live data feeds</div>
+          <span class="coming-badge">Coming soon</span>
+        </a>
+
+        <a class="lesson-card disabled" href="#">
+          <div class="lesson-code">OUTPUT-M01-L02</div>
+          <div class="lesson-title">Screening & Ranking</div>
+          <div class="lesson-topic">Building equity screens, applying filters, ranking by financial criteria</div>
+          <span class="coming-badge">Coming soon</span>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 18 18" width="14" height="14" fill="none">
+            <rect x="2" y="2" width="14" height="3" rx="1" fill="white" opacity="0.9"/>
+            <rect x="2" y="7.5" width="10" height="3" rx="1" fill="white" opacity="0.7"/>
+            <rect x="2" y="13" width="12" height="3" rx="1" fill="white" opacity="0.5"/>
+          </svg>
+        </div>
+        <span class="footer-name">BUS209</span>
+      </div>
+      <p class="footer-meta">
+        FactSet — Learning to Use FactSet<br>
+        Gerrish School of Business · Endicott College
+      </p>
+    </div>
+    <div class="footer-right">
+      <p class="footer-meta">
+        Fall 2026<br>
+        Professor Evitts<br>
+        3 Credits
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-section').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
