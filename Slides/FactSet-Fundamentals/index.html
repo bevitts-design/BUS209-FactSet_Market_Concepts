@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BUS209 · FactSet Fundamentals</title>
+  <link rel="icon" href="data:,">
   <style>
     :root {
       --navy: #0a2540;
@@ -51,11 +52,17 @@
       overflow: hidden;
     }
 
-    #deck {
+    #stage {
       position: relative;
+      flex: 0 0 auto;
+    }
+
+    #deck {
+      position: absolute;
+      inset: 0 auto auto 0;
       width: 1920px;
       height: 1080px;
-      transform-origin: center center;
+      transform-origin: top left;
       background: var(--paper);
       box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
     }
@@ -141,6 +148,8 @@
     }
 
     .dark h2 { color: #f4f8fc; }
+    .slide h1 { padding-bottom: 12px; }
+    .slide h2 { padding-bottom: 4px; }
 
     h3 {
       margin-bottom: 13px;
@@ -384,8 +393,8 @@
       border-top: 2px solid var(--line);
     }
 
-    .step-item strong,
-    .interpret-item strong {
+    .step-item > strong,
+    .interpret-item > strong {
       display: grid;
       place-items: center;
       width: 48px;
@@ -749,7 +758,8 @@
       html,
       body { overflow: visible; background: #fff; }
       #viewport { position: static; display: block; overflow: visible; }
-      #deck { width: auto; height: auto; transform: none !important; box-shadow: none; }
+      #stage { width: auto !important; height: auto !important; }
+      #deck { position: relative; width: auto; height: auto; transform: none !important; box-shadow: none; }
       .slide { position: relative; display: block !important; width: 1920px; height: 1080px; break-after: page; }
       #controls,
       #progress { display: none; }
@@ -758,7 +768,8 @@
 </head>
 <body>
   <div id="viewport">
-    <main id="deck" aria-live="polite">
+    <div id="stage">
+      <main id="deck" aria-live="polite">
       <section class="slide dark active" data-label="FactSet Fundamentals" role="group" aria-label="Slide 1 of 16: FactSet Fundamentals">
         <div class="top-rule"></div>
         <div class="course-tag">Endicott College · Gerrish School of Business</div>
@@ -1115,7 +1126,8 @@
           <div class="exit-ticket">Exit ticket: Which part of the FactSet workflow will be most useful in your next assignment—and why?</div>
         </div>
       </section>
-    </main>
+      </main>
+    </div>
   </div>
 
   <div id="progress" aria-hidden="true"></div>
@@ -1129,6 +1141,8 @@
 
   <script>
     (() => {
+      const viewport = document.getElementById('viewport');
+      const stage = document.getElementById('stage');
       const deck = document.getElementById('deck');
       const slides = Array.from(document.querySelectorAll('.slide'));
       const counter = document.getElementById('counter');
@@ -1136,10 +1150,16 @@
       const previous = document.getElementById('previous');
       const next = document.getElementById('next');
       const fullscreen = document.getElementById('fullscreen');
+      const slideWidth = 1920;
+      const slideHeight = 1080;
       let index = Math.max(0, Math.min(slides.length - 1, Number(location.hash.slice(1)) - 1 || 0));
 
       function scaleDeck() {
-        const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+        const availableWidth = viewport.clientWidth || window.innerWidth;
+        const availableHeight = viewport.clientHeight || window.innerHeight;
+        const scale = Math.min(availableWidth / slideWidth, availableHeight / slideHeight);
+        stage.style.width = `${slideWidth * scale}px`;
+        stage.style.height = `${slideHeight * scale}px`;
         deck.style.transform = `scale(${scale})`;
       }
 
@@ -1175,6 +1195,7 @@
       });
 
       window.addEventListener('resize', scaleDeck);
+      if ('ResizeObserver' in window) new ResizeObserver(scaleDeck).observe(viewport);
       window.addEventListener('hashchange', () => {
         const target = Number(location.hash.slice(1)) - 1;
         if (Number.isFinite(target)) showSlide(target, false);
