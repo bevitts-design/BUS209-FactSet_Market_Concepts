@@ -1,0 +1,326 @@
+{
+  "pptx": "/Users/bethanyevittsair2/Library/CloudStorage/OneDrive-Personal/EC_Teaching/BUS209 FactSet Market Concepts/BME- FA2025 - FactSet/A. Intro_Markets_ Economy/Understanding Economic Data_Role_Sourcing within Factset.pptx",
+  "slides": [
+    {
+      "slide": 1,
+      "texts": [
+        {
+          "text": "FactSet Market Concepts",
+          "box": null
+        },
+        {
+          "text": "Endicott College\\nGerrish school of Business :  BUS209-1\\nProfessor Bethany Evitts",
+          "box": null
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image1.png",
+          "box": {
+            "x": 4743450,
+            "y": 895351,
+            "cx": 2400300,
+            "cy": 1409700
+          }
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "texts": [
+        {
+          "text": "Understanding Economic Data and Its Role",
+          "box": {
+            "x": 612648,
+            "y": 1114923,
+            "cx": 4621553,
+            "cy": 1360728
+          }
+        },
+        {
+          "text": "Economic data reflects the health and trends of an economy.\\nIt includes indicators like GDP, inflation, employment, and trade balances.\\nInvestment professionals rely on economic data to make informed decisions.\\nTimely economic data helps anticipate market movements and risks.\\nAccurate data supports policymakers in designing effective economic policies.",
+          "box": {
+            "x": 612648,
+            "y": 2584058,
+            "cx": 4621553,
+            "cy": 3159018
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image2.jpeg",
+          "box": {
+            "x": 5691261,
+            "y": 1480640,
+            "cx": 5837780,
+            "cy": 3896719
+          }
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "texts": [
+        {
+          "text": "Economic Data Impact on Financial Markets",
+          "box": {
+            "x": 612648,
+            "y": 1114923,
+            "cx": 4621553,
+            "cy": 1360728
+          }
+        },
+        {
+          "text": "Market prices often react quickly to new economic data releases.\\nData on employment, inflation, and interest rates influence asset valuations.\\nEconomic data drives currency fluctuations and bond market movements.\\nTraders use economic reports to adjust portfolio risk and allocations.\\nReliable data reduces uncertainty and improves market confidence.",
+          "box": {
+            "x": 612648,
+            "y": 2584058,
+            "cx": 4621553,
+            "cy": 3159018
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image3.jpeg",
+          "box": {
+            "x": 5691261,
+            "y": 1480640,
+            "cx": 5837780,
+            "cy": 3896719
+          }
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "texts": [
+        {
+          "text": "Utilizing Economic Data for Strategic Planning",
+          "box": {
+            "x": 612648,
+            "y": 603504,
+            "cx": 4361686,
+            "cy": 1527048
+          }
+        },
+        {
+          "text": "Businesses use economic data for forecasting demand and supply trends.\\nEconomic indicators guide investment timing and resource allocation.\\nData-driven insights improve risk management and competitive advantage.\\nLong-term economic data helps identify growth sectors and challenges.\\nIntegrating economic data enhances decision-making across industries.",
+          "box": {
+            "x": 612647,
+            "y": 2212848,
+            "cx": 4361687,
+            "cy": 4096512
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image4.jpeg",
+          "box": {
+            "x": 5818632,
+            "y": -1,
+            "cx": 6373368,
+            "cy": 6858001
+          }
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "texts": [
+        {
+          "text": "Economic Project Country Assignments",
+          "box": {
+            "x": 1854440,
+            "y": 607336,
+            "cx": 8203720,
+            "cy": 732129
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 6,
+      "texts": [
+        {
+          "text": "Deliverable- PowerPoint Presentation to be delivered in class\\n1. Executive Summary (1-2 pages)\\nCurrent economic overview\\nKey strengths and vulnerabilities\\nInvestment implications\\n2. Data Visualization Dashboard - each of the 5 key categories\\nMacroeconomic Fundamentals\\nFiscal and Monetary Policy\\nExchange Rate\\nLabor Market and Social Indicators\\nFinancial Markets and Banking\\nKey Questions to Address\\nHow has Your Assigned Country's economic recovery progressed post-COVID?\\nWhat are the primary drivers of current inflation trends?\\nHow is the performance of Your Assigned Country\u2019s financial markets over the last 5 years?\\nWhat additional information did you learn during your analysis?\\nRubic Success Metrics\\nComprehensive coverage and delivery of required economic indicators\\nClear identification of trends and inflection points\\nProfessional presentation of findings\\nEffective use of FactSet tools and data",
+          "box": {
+            "x": 3403600,
+            "y": 163732,
+            "cx": 8788400,
+            "cy": 6694268
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 7,
+      "texts": [],
+      "images": [
+        {
+          "src": "assets/media/image6.png",
+          "box": {
+            "x": 903125,
+            "y": 330200,
+            "cx": 10385749,
+            "cy": 6197600
+          }
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "texts": [
+        {
+          "text": "Country/Region- Economic Synopsis: Economic Outlook",
+          "box": {
+            "x": 624506,
+            "y": 3991500,
+            "cx": 8837546,
+            "cy": 1870483
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image7.png",
+          "box": {
+            "x": 20,
+            "y": -1,
+            "cx": 12191980,
+            "cy": 6858001
+          }
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "texts": [
+        {
+          "text": "Country/Region- Economic Synopsis: Economic Outlook",
+          "box": {
+            "x": 617365,
+            "y": 5268812,
+            "cx": 7260542,
+            "cy": 1228763
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image8.png",
+          "box": {
+            "x": 20,
+            "y": 10,
+            "cx": 12191980,
+            "cy": 6857990
+          }
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "texts": [
+        {
+          "text": "Bilateral Trade",
+          "box": {
+            "x": 624506,
+            "y": 3991500,
+            "cx": 8837546,
+            "cy": 1870483
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image9.png",
+          "box": {
+            "x": 20,
+            "y": -1,
+            "cx": 12191980,
+            "cy": 6858001
+          }
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "texts": [],
+      "images": [
+        {
+          "src": "assets/media/image10.png",
+          "box": {
+            "x": 492369,
+            "y": 544068,
+            "cx": 12191999,
+            "cy": 5769864
+          }
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "texts": [],
+      "images": [
+        {
+          "src": "assets/media/image11.png",
+          "box": {
+            "x": 407377,
+            "y": 346565,
+            "cx": 11377246,
+            "cy": 4999157
+          }
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "texts": [],
+      "images": [
+        {
+          "src": "assets/media/image12.png",
+          "box": {
+            "x": 668216,
+            "y": 1625213,
+            "cx": 12192000,
+            "cy": 3361389
+          }
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "texts": [],
+      "images": [
+        {
+          "src": "assets/media/image13.png",
+          "box": {
+            "x": 650631,
+            "y": 1807723,
+            "cx": 12192000,
+            "cy": 3242553
+          }
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "texts": [
+        {
+          "text": "Investigate your country\u2026.",
+          "box": {
+            "x": 1170165,
+            "y": 1088571,
+            "cx": 7538405,
+            "cy": 2774393
+          }
+        }
+      ],
+      "images": []
+    }
+  ]
+}

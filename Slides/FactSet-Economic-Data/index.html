@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BUS209 presentation on understanding, sourcing, and interpreting economic data in FactSet.">
+  <title>BUS209 · Understanding Economic Data</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      --navy: #0a2540;
+      --navy-2: #12304a;
+      --steel: #2d7dd2;
+      --steel-dark: #175fa9;
+      --teal: #1b998b;
+      --gold: #e6a817;
+      --ink: #243746;
+      --slate: #586b7a;
+      --muted: #7c8d9a;
+      --line: #d8e3e8;
+      --sky: #edf5fb;
+      --pale: #eaf5f4;
+      --paper: #ffffff;
+      --stage-w: 1920;
+      --stage-h: 1080;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #061a2c;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button { font: inherit; }
+
+    button:focus-visible {
+      outline: 5px solid #f4bd37;
+      outline-offset: 5px;
+    }
+
+    #viewport {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    #stage {
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    #deck {
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 1920px;
+      height: 1080px;
+      transform-origin: top left;
+      background: var(--paper);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      overflow: hidden;
+      padding: 72px 86px 68px;
+      background: var(--paper);
+    }
+
+    .slide.active { display: block; }
+    .slide.soft { background: #f6f9fc; }
+
+    .slide.dark {
+      color: #f4f8fc;
+      background:
+        radial-gradient(circle at 84% 24%, rgba(45, 125, 210, 0.20), transparent 34%),
+        linear-gradient(135deg, var(--navy) 0%, #0c3154 100%);
+    }
+
+    .slide.activity-slide {
+      background:
+        radial-gradient(circle at 92% 12%, rgba(27, 153, 139, 0.12), transparent 28%),
+        var(--pale);
+    }
+
+    .top-rule {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      right: 64px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .dark .top-rule { background: rgba(183, 215, 242, 0.55); }
+
+    .course-tag,
+    .slide-number {
+      position: absolute;
+      top: 60px;
+      z-index: 3;
+      color: var(--muted);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .course-tag { left: 64px; }
+    .slide-number { right: 64px; }
+    .dark .course-tag,
+    .dark .slide-number { color: #9ab6cd; }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      padding-top: 54px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1 {
+      max-width: 1230px;
+      margin-bottom: 32px;
+      font-size: 102px;
+      font-weight: 650;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      max-width: 1570px;
+      margin-bottom: 32px;
+      color: var(--navy);
+      font-size: 62px;
+      font-weight: 620;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .dark h2 { color: #f4f8fc; }
+
+    h3 {
+      margin-bottom: 13px;
+      color: var(--navy);
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+      color: var(--steel);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .dark .eyebrow { color: #7dc3ff; }
+
+    .lead {
+      max-width: 1390px;
+      color: var(--slate);
+      font-size: 32px;
+      line-height: 1.42;
+    }
+
+    .dark .lead { color: #cfe1ef; }
+
+    .hero-logo {
+      width: 184px;
+      height: 110px;
+      margin-bottom: 52px;
+      object-fit: contain;
+      object-position: left center;
+    }
+
+    .hero-meta {
+      position: absolute;
+      left: 0;
+      bottom: 90px;
+      display: grid;
+      grid-template-columns: 360px 560px;
+      gap: 72px;
+      color: #d9e8f4;
+      font-size: 26px;
+      line-height: 1.35;
+    }
+
+    .hero-meta span {
+      display: block;
+      margin-bottom: 7px;
+      color: #77bcf6;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-split,
+    .source-layout,
+    .project-layout,
+    .final-layout {
+      display: grid;
+      align-items: stretch;
+      gap: 44px;
+    }
+
+    .hero-split { grid-template-columns: 0.92fr 1.08fr; }
+    .source-layout { grid-template-columns: 1.28fr 0.72fr; }
+    .project-layout { grid-template-columns: 0.68fr 1.32fr; }
+    .final-layout { grid-template-columns: 0.72fr 1.28fr; }
+
+    .photo-frame,
+    .screenshot {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--paper);
+    }
+
+    .photo-frame {
+      height: 580px;
+      box-shadow: 0 20px 45px rgba(10, 37, 64, 0.10);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 580px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .screenshot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 520px;
+      padding: 18px;
+      box-shadow: 0 16px 34px rgba(10, 37, 64, 0.08);
+    }
+
+    .screenshot img {
+      width: 100%;
+      height: 100%;
+      max-height: 560px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .screenshot.wide {
+      min-height: 400px;
+      padding: 22px;
+    }
+
+    .screenshot.wide img { max-height: 430px; }
+
+    .capture-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.35;
+    }
+
+    .concept-grid,
+    .country-grid,
+    .category-grid,
+    .question-grid,
+    .success-grid,
+    .read-grid,
+    .workflow-grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    .concept-grid { grid-template-columns: repeat(2, 1fr); }
+    .country-grid { grid-template-columns: repeat(3, 1fr); }
+    .category-grid { grid-template-columns: repeat(3, 1fr); }
+    .question-grid { grid-template-columns: repeat(2, 1fr); }
+    .success-grid { grid-template-columns: repeat(2, 1fr); }
+    .read-grid { grid-template-columns: 1fr; }
+    .workflow-grid { grid-template-columns: repeat(5, 1fr); }
+
+    .concept-card,
+    .country-card,
+    .category-card,
+    .question-card,
+    .success-card,
+    .read-step,
+    .workflow-step {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+    }
+
+    .concept-card,
+    .category-card,
+    .question-card,
+    .success-card { padding: 30px 34px; }
+
+    .concept-card strong,
+    .read-step strong,
+    .workflow-step strong {
+      color: var(--steel-dark);
+      font-size: 24px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .concept-card p,
+    .category-card p,
+    .question-card p,
+    .success-card p,
+    .read-step p,
+    .workflow-step p {
+      margin: 10px 0 0;
+      color: var(--slate);
+      font-size: 27px;
+      line-height: 1.36;
+    }
+
+    .surprise-chain {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: stretch;
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .chain-step {
+      position: relative;
+      min-height: 150px;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      border-radius: 18px;
+      background: var(--navy);
+      color: #ffffff;
+      text-align: center;
+      font-size: 29px;
+      font-weight: 750;
+      line-height: 1.2;
+    }
+
+    .chain-step:not(:last-child)::after {
+      position: absolute;
+      top: 50%;
+      right: -27px;
+      z-index: 2;
+      content: "→";
+      color: var(--steel);
+      font-size: 36px;
+      transform: translateY(-50%);
+    }
+
+    .project-brief,
+    .source-prompt,
+    .final-prompt {
+      border-radius: 22px;
+      background: var(--navy);
+      color: #f4f8fc;
+      padding: 38px 40px;
+    }
+
+    .project-brief h3,
+    .source-prompt h3,
+    .final-prompt h3 { color: #ffffff; }
+
+    .project-brief p,
+    .source-prompt p,
+    .final-prompt p {
+      color: #d4e4ef;
+      font-size: 27px;
+      line-height: 1.42;
+    }
+
+    .source-prompt .read-grid { gap: 16px; }
+
+    .source-prompt .read-step {
+      padding: 18px 22px;
+    }
+
+    .source-prompt .read-step p {
+      margin-top: 6px;
+      color: var(--slate);
+      font-size: 24px;
+      line-height: 1.28;
+    }
+
+    .project-chip,
+    .activity-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      margin-bottom: 22px;
+      padding: 7px 15px;
+      border-radius: 999px;
+      background: rgba(125, 195, 255, 0.16);
+      color: #8ed0ff;
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .country-card {
+      min-height: 154px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 26px 30px;
+    }
+
+    .flag {
+      width: 74px;
+      height: 52px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--sky);
+      font-size: 38px;
+    }
+
+    .country-card span:last-child {
+      color: var(--navy);
+      font-size: 30px;
+      font-weight: 750;
+    }
+
+    .deliverable-stack {
+      display: grid;
+      gap: 22px;
+    }
+
+    .deliverable-item {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 30px 34px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--paper);
+    }
+
+    .deliverable-item .n {
+      color: var(--steel);
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .deliverable-item p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 28px;
+      line-height: 1.4;
+    }
+
+    .deliverable-item strong { color: var(--navy); }
+
+    .category-card {
+      min-height: 216px;
+      border-top: 8px solid var(--steel);
+    }
+
+    .category-card:nth-child(2),
+    .category-card:nth-child(5) { border-top-color: var(--teal); }
+    .category-card:nth-child(3) { border-top-color: var(--gold); }
+    .category-card:nth-child(4) { grid-column: 1 / 2; }
+    .category-card:nth-child(5) { grid-column: 2 / 4; }
+
+    .category-card span,
+    .question-card span,
+    .success-card span {
+      color: var(--steel-dark);
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .question-card { min-height: 230px; }
+    .success-card { min-height: 206px; }
+
+    .section-center {
+      height: 100%;
+      display: grid;
+      place-content: center;
+      max-width: 1320px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .section-number {
+      color: #7dc3ff;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .section-center h2 {
+      margin: 24px auto;
+      font-size: 94px;
+    }
+
+    .section-center p {
+      margin: 0 auto;
+      color: #cfe1ef;
+      font-size: 34px;
+      line-height: 1.42;
+    }
+
+    .read-step {
+      padding: 24px 28px;
+    }
+
+    .read-step p { font-size: 25px; }
+
+    .decision-callout {
+      margin-top: 26px;
+      padding: 22px 28px;
+      border: 1px solid #b8d9d4;
+      border-radius: 16px;
+      background: var(--pale);
+      color: var(--ink);
+      font-size: 27px;
+      line-height: 1.38;
+    }
+
+    .decision-callout strong { color: #11756c; }
+
+    .compare-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .compare-item {
+      padding: 22px 24px;
+      border-radius: 14px;
+      background: var(--sky);
+      color: var(--navy);
+      font-size: 25px;
+      font-weight: 750;
+      text-align: center;
+    }
+
+    .chart-explain {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .chart-explain article {
+      padding: 24px 28px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--paper);
+    }
+
+    .chart-explain strong {
+      color: var(--steel-dark);
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .chart-explain p {
+      margin: 8px 0 0;
+      color: var(--slate);
+      font-size: 25px;
+      line-height: 1.35;
+    }
+
+    .maturity-slide .screenshot.wide { min-height: 350px; }
+    .maturity-slide .chart-explain { margin-top: 16px; }
+    .maturity-slide .chart-explain article { padding: 18px 24px; }
+    .maturity-slide .chart-explain p { margin-top: 4px; font-size: 24px; line-height: 1.28; }
+    .maturity-slide .capture-note { margin-top: 8px; }
+
+    .workflow-step {
+      position: relative;
+      min-height: 240px;
+      padding: 30px 26px;
+    }
+
+    .workflow-step:not(:last-child)::after {
+      position: absolute;
+      top: 50%;
+      right: -22px;
+      z-index: 2;
+      content: "→";
+      color: #7dc3ff;
+      font-size: 32px;
+      transform: translateY(-50%);
+    }
+
+    .workflow-step p { font-size: 25px; }
+
+    .exit-ticket {
+      margin-top: 30px;
+      padding: 24px 30px;
+      border: 1px solid rgba(125, 195, 255, 0.42);
+      border-radius: 16px;
+      background: rgba(125, 195, 255, 0.10);
+      color: #e6f3fb;
+      font-size: 29px;
+      line-height: 1.38;
+    }
+
+    #progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 20;
+      width: 0;
+      height: 6px;
+      background: var(--steel);
+      transition: width 0.16s ease;
+    }
+
+    #controls {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 15px;
+      background: rgba(6, 26, 44, 0.82);
+      backdrop-filter: blur(12px);
+    }
+
+    #controls button {
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.10);
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    #controls button:hover { background: rgba(255, 255, 255, 0.20); }
+
+    #counter {
+      min-width: 82px;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 750;
+      text-align: center;
+    }
+
+    .screen-reader-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewport">
+    <div id="stage">
+      <main id="deck" aria-describedby="keyboard-help">
+        <section class="slide dark active" data-label="Understanding Economic Data" role="group" aria-label="Slide 1 of 19: Understanding Economic Data">
+          <div class="top-rule"></div>
+          <div class="course-tag">BUS209 · FactSet Market Concepts</div>
+          <div class="slide-number">01</div>
+          <div class="content">
+            <img class="hero-logo" src="assets/media/image1.png" alt="FactSet logo">
+            <p class="eyebrow">Economic indicators and evidence</p>
+            <h1>Understanding Economic Data and Its Role</h1>
+            <p class="lead">How to source, interpret, and communicate country-level evidence in FactSet</p>
+            <div class="hero-meta">
+              <div><span>Course</span>BUS209 · FactSet Market Concepts</div>
+              <div><span>Instructor</span>Professor Bethany Evitts · Endicott College</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide soft" data-label="Economic data as evidence" role="group" aria-label="Slide 2 of 19: Economic data as evidence">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Foundations</div><div class="slide-number">02</div>
+          <div class="content">
+            <p class="eyebrow">What economic data does</p>
+            <h2>Economic data turns the economy into evidence</h2>
+            <div class="hero-split">
+              <div class="concept-grid">
+                <article class="concept-card"><strong>Output</strong><p>GDP and production measures show the pace and composition of growth.</p></article>
+                <article class="concept-card"><strong>Prices</strong><p>Inflation data reveals changes in purchasing power and policy pressure.</p></article>
+                <article class="concept-card"><strong>Labor</strong><p>Employment, wages, and participation show household and business conditions.</p></article>
+                <article class="concept-card"><strong>External balance</strong><p>Trade and currency data show how the economy connects to the rest of the world.</p></article>
+              </div>
+              <figure class="photo-frame"><img src="assets/media/image2.jpeg" alt="Rising line chart over financial data"></figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-label="Economic releases and markets" role="group" aria-label="Slide 3 of 19: Economic releases and markets">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Market impact</div><div class="slide-number">03</div>
+          <div class="content">
+            <p class="eyebrow">Why markets react</p>
+            <h2>Markets move on the gap between expectation and reality</h2>
+            <div class="hero-split">
+              <div>
+                <p class="lead">An economic release matters because it changes expectations for growth, inflation, interest rates, and risk.</p>
+                <div class="surprise-chain">
+                  <div class="chain-step">Consensus</div><div class="chain-step">Actual</div><div class="chain-step">Surprise</div><div class="chain-step">Repricing</div>
+                </div>
+              </div>
+              <figure class="photo-frame"><img src="assets/media/image3.jpeg" alt="Financial market prices on a digital display"></figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide soft" data-label="Economic data and planning" role="group" aria-label="Slide 4 of 19: Economic data and planning">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Strategic planning</div><div class="slide-number">04</div>
+          <div class="content">
+            <p class="eyebrow">Beyond the trading screen</p>
+            <h2>Businesses use the same evidence to plan ahead</h2>
+            <div class="hero-split">
+              <div class="concept-grid">
+                <article class="concept-card"><strong>Demand</strong><p>Forecast customer spending and changes in order volume.</p></article>
+                <article class="concept-card"><strong>Capital</strong><p>Time investments and allocate resources as conditions change.</p></article>
+                <article class="concept-card"><strong>Risk</strong><p>Stress-test supply, financing, and currency exposure.</p></article>
+                <article class="concept-card"><strong>Opportunity</strong><p>Identify sectors and countries with stronger growth potential.</p></article>
+              </div>
+              <figure class="photo-frame"><img src="assets/media/image4.jpeg" alt="Chess pieces and charts representing strategic planning"></figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide activity-slide" data-label="Country assignments" role="group" aria-label="Slide 5 of 19: Country assignments">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Economic project</div><div class="slide-number">05</div>
+          <div class="content">
+            <p class="eyebrow">Project launch</p>
+            <h2>Your country becomes the lens for the project</h2>
+            <div class="project-layout">
+              <aside class="project-brief"><span class="project-chip">Country assignment</span><h3>One research question, many connected indicators</h3><p>Use your assigned country to investigate growth, prices, policy, labor, trade, and financial markets as one economic system.</p></aside>
+              <div class="country-grid">
+                <article class="country-card"><span class="flag" aria-hidden="true">🇯🇵</span><span>Japan</span></article>
+                <article class="country-card"><span class="flag" aria-hidden="true">🇩🇪</span><span>Germany</span></article>
+                <article class="country-card"><span class="flag" aria-hidden="true">🇫🇷</span><span>France</span></article>
+                <article class="country-card"><span class="flag" aria-hidden="true">🇪🇸</span><span>Spain</span></article>
+                <article class="country-card"><span class="flag" aria-hidden="true">🇮🇹</span><span>Italy</span></article>
+                <article class="country-card"><span class="flag" aria-hidden="true">🇬🇧</span><span>United Kingdom</span></article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-label="Project deliverable" role="group" aria-label="Slide 6 of 19: Project deliverable">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Deliverable</div><div class="slide-number">06</div>
+          <div class="content">
+            <p class="eyebrow">What you will deliver</p>
+            <h2>Build a decision-ready country presentation</h2>
+            <div class="deliverable-stack">
+              <article class="deliverable-item"><div class="n">01</div><p><strong>Executive summary:</strong> explain the current outlook, major strengths and vulnerabilities, and investment implications.</p></article>
+              <article class="deliverable-item"><div class="n">02</div><p><strong>Data-visualization dashboard:</strong> organize the evidence into five connected categories.</p></article>
+              <article class="deliverable-item"><div class="n">03</div><p><strong>In-class presentation:</strong> show what changed, why it matters, and what the evidence supports.</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide soft" data-label="Dashboard categories" role="group" aria-label="Slide 7 of 19: Dashboard categories">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Evidence map</div><div class="slide-number">07</div>
+          <div class="content">
+            <p class="eyebrow">Five required categories</p>
+            <h2>Build the dashboard around a balanced evidence set</h2>
+            <div class="category-grid">
+              <article class="category-card"><span>01</span><h3>Macroeconomic fundamentals</h3><p>Growth, inflation, production, and external balances</p></article>
+              <article class="category-card"><span>02</span><h3>Fiscal and monetary policy</h3><p>Government finance, policy rates, and central-bank direction</p></article>
+              <article class="category-card"><span>03</span><h3>Exchange rate</h3><p>Currency direction, volatility, and external competitiveness</p></article>
+              <article class="category-card"><span>04</span><h3>Labor and social indicators</h3><p>Employment, wages, participation, and household conditions</p></article>
+              <article class="category-card"><span>05</span><h3>Financial markets and banking</h3><p>Equity performance, interest rates, credit conditions, and banking-system signals</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-label="Guiding questions" role="group" aria-label="Slide 8 of 19: Guiding questions">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Analysis</div><div class="slide-number">08</div>
+          <div class="content">
+            <p class="eyebrow">Questions that create a throughline</p>
+            <h2>Four questions turn the dashboard into analysis</h2>
+            <div class="question-grid">
+              <article class="question-card"><span>Recovery</span><p>How has the country’s economic recovery progressed since COVID?</p></article>
+              <article class="question-card"><span>Inflation</span><p>What are the primary drivers of the country’s current inflation trend?</p></article>
+              <article class="question-card"><span>Markets</span><p>How have the country’s financial markets performed over the last five years?</p></article>
+              <article class="question-card"><span>Insight</span><p>What additional finding changed or sharpened your view of the country?</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide soft" data-label="Project success" role="group" aria-label="Slide 9 of 19: Project success">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Success criteria</div><div class="slide-number">09</div>
+          <div class="content">
+            <p class="eyebrow">What strong work demonstrates</p>
+            <h2>Coverage matters—but interpretation earns the conclusion</h2>
+            <div class="success-grid">
+              <article class="success-card"><span>Coverage</span><p>Use the required indicators without turning the presentation into a data dump.</p></article>
+              <article class="success-card"><span>Trends</span><p>Identify direction, inflection points, and meaningful differences across time.</p></article>
+              <article class="success-card"><span>Evidence</span><p>Connect claims to FactSet screens, source labels, or calculations.</p></article>
+              <article class="success-card"><span>Delivery</span><p>Present a clear argument with professional visuals and purposeful sequencing.</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide dark" data-label="Source the evidence" role="group" aria-label="Slide 10 of 19: Source the evidence">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · FactSet workflow</div><div class="slide-number">10</div>
+          <div class="content section-center">
+            <span class="section-number">Part 2 · Source and interpret</span>
+            <h2>Source the evidence in FactSet</h2>
+            <p>Move from the event calendar to country, trade, policy, and government-finance views—then explain what the evidence means.</p>
+          </div>
+        </section>
+
+        <section class="slide" data-label="Economic Calendar" role="group" aria-label="Slide 11 of 19: Economic Calendar">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Economic Calendar</div><div class="slide-number">11</div>
+          <div class="content">
+            <p class="eyebrow">Start with timing and expectations</p>
+            <h2>The Economic Calendar reveals what markets expect</h2>
+            <div class="source-layout">
+              <div><figure class="screenshot"><img src="assets/media/image6.png" alt="FactSet Economic Calendar with events, dates, consensus estimates, actual values, and surprise indicators"></figure><p class="capture-note">Historical FactSet interface captured in the 2025 source deck. Events and values shown are not current.</p></div>
+              <aside class="source-prompt"><h3>Read in this order</h3><div class="read-grid"><article class="read-step"><strong>1 · Event</strong><p>What indicator is being released?</p></article><article class="read-step"><strong>2 · Expectation</strong><p>What does the consensus imply?</p></article><article class="read-step"><strong>3 · Surprise</strong><p>How far did actual differ?</p></article><article class="read-step"><strong>4 · Meaning</strong><p>Which market assumption changed?</p></article></div></aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide soft" data-label="Country economic synopsis" role="group" aria-label="Slide 12 of 19: Country economic synopsis">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Country and Region</div><div class="slide-number">12</div>
+          <div class="content">
+            <p class="eyebrow">Country economic synopsis</p>
+            <h2>Read a country as one connected economic system</h2>
+            <div class="source-layout">
+              <div><figure class="screenshot"><img src="assets/media/image7.png" alt="FactSet country economic synopsis with national accounts, inflation, labor, housing, and policy-rate data"></figure><p class="capture-note">Historical FactSet country and region view from the 2025 source deck.</p></div>
+              <aside class="source-prompt"><h3>Connect the evidence</h3><p><strong>Growth:</strong> Is output accelerating or slowing?</p><p><strong>Inflation:</strong> Is price pressure broadening or cooling?</p><p><strong>Labor:</strong> Does employment support demand?</p><p><strong>Policy:</strong> Is the central bank reinforcing or offsetting those conditions?</p></aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-label="Economic outlook" role="group" aria-label="Slide 13 of 19: Economic outlook">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Economic outlook</div><div class="slide-number">13</div>
+          <div class="content">
+            <p class="eyebrow">Snapshot versus direction</p>
+            <h2>Separate the latest reading from the emerging trend</h2>
+            <div class="source-layout">
+              <div><figure class="screenshot"><img src="assets/media/image8.png" alt="FactSet economic outlook table with monthly and quarterly indicators across several periods"></figure><p class="capture-note">Historical FactSet outlook view from the 2025 source deck.</p></div>
+              <aside class="source-prompt"><h3>Ask three questions</h3><p><strong>Level:</strong> Is the latest value strong or weak?</p><p><strong>Direction:</strong> Is the series improving, deteriorating, or flat?</p><p><strong>Consistency:</strong> Do related indicators tell the same story?</p><div class="decision-callout"><strong>Do not stop at the last column:</strong> your conclusion should explain the pattern across periods.</div></aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide soft" data-label="Bilateral trade" role="group" aria-label="Slide 14 of 19: Bilateral trade">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · External sector</div><div class="slide-number">14</div>
+          <div class="content">
+            <p class="eyebrow">Bilateral trade</p>
+            <h2>Trade patterns reveal where external dependence is concentrated</h2>
+            <div class="source-layout">
+              <div><figure class="screenshot"><img src="assets/media/image9.png" alt="FactSet bilateral trade table listing regions and imports, exports, and trade balances across periods"></figure><p class="capture-note">Historical FactSet bilateral-trade view from the 2025 source deck.</p></div>
+              <aside class="source-prompt"><h3>Turn the table into a claim</h3><p><strong>Partners:</strong> Which regions matter most?</p><p><strong>Direction:</strong> Is the country a net importer or exporter?</p><p><strong>Change:</strong> Where is the balance moving?</p><p><strong>Risk:</strong> What happens if demand, tariffs, or exchange rates shift?</p></aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="slide" data-label="Cross-country comparison" role="group" aria-label="Slide 15 of 19: Cross-country comparison">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Relative context</div><div class="slide-number">15</div>
+          <div class="content">
+            <p class="eyebrow">World data summary</p>
+            <h2>Compare countries before explaining one</h2>
+            <figure class="screenshot wide"><img src="assets/media/image10.png" alt="FactSet world data summary comparing population, GDP growth, GDP per capita, inflation, and interest rates across countries"></figure>
+            <div class="compare-strip"><div class="compare-item">Growth</div><div class="compare-item">Inflation</div><div class="compare-item">Income per person</div><div class="compare-item">Interest rates</div></div>
+            <p class="capture-note">Historical standardized economic database view from the 2025 source deck. Use peers to establish context, not to replace country-specific analysis.</p>
+          </div>
+        </section>
+
+        <section class="slide soft" data-label="Policy rates" role="group" aria-label="Slide 16 of 19: Policy rates">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Monetary policy</div><div class="slide-number">16</div>
+          <div class="content">
+            <p class="eyebrow">Policy rates</p>
+            <h2>Central-bank rates connect economic conditions to market prices</h2>
+            <figure class="screenshot wide"><img src="assets/media/image11.png" alt="FactSet policy-rate table showing central banks, current policy rates, changes, and meeting information"></figure>
+            <div class="chart-explain"><article><strong>Level</strong><p>How restrictive or supportive is the current rate?</p></article><article><strong>Direction</strong><p>Has the central bank been hiking, cutting, or holding?</p></article><article><strong>Transmission</strong><p>How might the stance affect bonds, currencies, banks, and demand?</p></article></div>
+            <p class="capture-note">Historical policy-rate view from the 2025 source deck.</p>
+          </div>
+        </section>
+
+        <section class="slide" data-label="Government funding sources" role="group" aria-label="Slide 17 of 19: Government funding sources">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Fiscal structure</div><div class="slide-number">17</div>
+          <div class="content">
+            <p class="eyebrow">Government source of capital</p>
+            <h2>The financing mix shows how a government funds itself</h2>
+            <figure class="screenshot wide"><img src="assets/media/image12.png" alt="FactSet chart showing government sources of capital across bonds, loans, receivables, and preferred shares"></figure>
+            <div class="chart-explain"><article><strong>Composition</strong><p>Which sources dominate government financing?</p></article><article><strong>Change</strong><p>Is the mix becoming more concentrated or diversified?</p></article><article><strong>Implication</strong><p>What does the structure suggest about market access and sensitivity to rates?</p></article></div>
+            <p class="capture-note">Historical United States government capital view from the 2025 source deck.</p>
+          </div>
+        </section>
+
+        <section class="slide soft maturity-slide" data-label="Debt maturity schedule" role="group" aria-label="Slide 18 of 19: Debt maturity schedule">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Refinancing risk</div><div class="slide-number">18</div>
+          <div class="content">
+            <p class="eyebrow">Debt maturity schedule</p>
+            <h2>Maturity concentration reveals when refinancing pressure may rise</h2>
+            <figure class="screenshot wide"><img src="assets/media/image13.png" alt="FactSet government debt maturity schedule with amounts due across future periods"></figure>
+            <div class="chart-explain"><article><strong>Timing</strong><p>Where are the largest maturity years?</p></article><article><strong>Rate exposure</strong><p>Could maturing debt be refinanced at a higher cost?</p></article><article><strong>Context</strong><p>How do growth, inflation, and policy rates change the interpretation?</p></article></div>
+            <p class="capture-note">Historical United States government debt-maturity view from the 2025 source deck.</p>
+          </div>
+        </section>
+
+        <section class="slide dark" data-label="Investigate your country" role="group" aria-label="Slide 19 of 19: Investigate your country">
+          <div class="top-rule"></div><div class="course-tag">BUS209 · Ready to investigate</div><div class="slide-number">19</div>
+          <div class="content">
+            <p class="eyebrow">Your analytical workflow</p>
+            <h2>Investigate your country with a repeatable evidence chain</h2>
+            <div class="workflow-grid">
+              <article class="workflow-step"><strong>01 · Question</strong><p>Define what you need to understand.</p></article>
+              <article class="workflow-step"><strong>02 · Source</strong><p>Choose the FactSet view that fits the question.</p></article>
+              <article class="workflow-step"><strong>03 · Trend</strong><p>Describe the pattern across time or peers.</p></article>
+              <article class="workflow-step"><strong>04 · Explain</strong><p>Connect related indicators and test the story.</p></article>
+              <article class="workflow-step"><strong>05 · Implication</strong><p>State what the evidence means for markets or investment.</p></article>
+            </div>
+            <div class="exit-ticket">Begin with one claim you expect the evidence to support—then let the data confirm, refine, or overturn it.</div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div id="progress" aria-hidden="true"></div>
+  <nav id="controls" aria-label="Slide controls">
+    <button id="previous" type="button" aria-label="Previous slide">←</button>
+    <span id="counter" aria-live="polite">1 / 19</span>
+    <button id="next" type="button" aria-label="Next slide">→</button>
+    <button id="fullscreen" type="button" aria-label="Enter fullscreen">⛶</button>
+  </nav>
+  <p class="screen-reader-only" id="keyboard-help">Use the left and right arrow keys to move between slides. Press F for fullscreen.</p>
+
+  <script>
+    (() => {
+      const viewport = document.getElementById('viewport');
+      const stage = document.getElementById('stage');
+      const deck = document.getElementById('deck');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const counter = document.getElementById('counter');
+      const progress = document.getElementById('progress');
+      const previous = document.getElementById('previous');
+      const next = document.getElementById('next');
+      const fullscreen = document.getElementById('fullscreen');
+      const slideWidth = 1920;
+      const slideHeight = 1080;
+      let index = Math.max(0, Math.min(slides.length - 1, Number(location.hash.slice(1)) - 1 || 0));
+
+      function scaleDeck() {
+        const availableWidth = viewport.clientWidth || window.innerWidth;
+        const availableHeight = viewport.clientHeight || window.innerHeight;
+        const scale = Math.min(availableWidth / slideWidth, availableHeight / slideHeight);
+        stage.style.width = `${slideWidth * scale}px`;
+        stage.style.height = `${slideHeight * scale}px`;
+        deck.style.transform = `scale(${scale})`;
+      }
+
+      function showSlide(target, updateHash = true) {
+        index = Math.max(0, Math.min(slides.length - 1, target));
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle('active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+        counter.textContent = `${index + 1} / ${slides.length}`;
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+        document.title = `BUS209 · ${slides[index].dataset.label}`;
+        if (updateHash) history.replaceState(null, '', `#${index + 1}`);
+      }
+
+      function move(delta) { showSlide(index + delta); }
+
+      previous.addEventListener('click', () => move(-1));
+      next.addEventListener('click', () => move(1));
+      fullscreen.addEventListener('click', () => {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.target instanceof HTMLAnchorElement) return;
+        if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); move(1); }
+        if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); move(-1); }
+        if (event.key === 'Home') { event.preventDefault(); showSlide(0); }
+        if (event.key === 'End') { event.preventDefault(); showSlide(slides.length - 1); }
+        if (event.key.toLowerCase() === 'f') fullscreen.click();
+      });
+
+      window.addEventListener('resize', scaleDeck);
+      if ('ResizeObserver' in window) new ResizeObserver(scaleDeck).observe(viewport);
+      window.addEventListener('hashchange', () => {
+        const target = Number(location.hash.slice(1)) - 1;
+        if (Number.isFinite(target)) showSlide(target, false);
+      });
+
+      scaleDeck();
+      showSlide(index, false);
+    })();
+  </script>
+</body>
+</html>
