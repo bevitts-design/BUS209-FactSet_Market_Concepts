@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS209 · FactSet Course Introduction</title>
+  <style>
+    :root {
+      --navy: #0a2540;
+      --navy-2: #12304a;
+      --steel: #2d7dd2;
+      --steel-dark: #175fa9;
+      --teal: #1b998b;
+      --gold: #e6a817;
+      --ink: #243746;
+      --slate: #586b7a;
+      --muted: #7c8d9a;
+      --line: #d8e3e8;
+      --sky: #edf5fb;
+      --pale: #eaf5f4;
+      --paper: #ffffff;
+      --stage-w: 1920;
+      --stage-h: 1080;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #061a2c;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button,
+    a { font: inherit; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 5px solid #f4bd37;
+      outline-offset: 5px;
+    }
+
+    #viewport {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    #deck {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      transform-origin: center center;
+      background: var(--paper);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      overflow: hidden;
+      padding: 72px 86px 68px;
+      background: var(--paper);
+    }
+
+    .slide.active { display: block; }
+
+    .slide.dark {
+      color: #f4f8fc;
+      background:
+        radial-gradient(circle at 84% 24%, rgba(45, 125, 210, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--navy) 0%, #0c3154 100%);
+    }
+
+    .slide.soft { background: #f6f9fc; }
+
+    .top-rule {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      right: 64px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .dark .top-rule { background: rgba(183, 215, 242, 0.55); }
+
+    .course-tag,
+    .slide-number {
+      position: absolute;
+      top: 60px;
+      z-index: 3;
+      color: var(--muted);
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .course-tag { left: 64px; }
+    .slide-number { right: 64px; }
+    .dark .course-tag,
+    .dark .slide-number { color: #9ab6cd; }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      padding-top: 54px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1 {
+      max-width: 1200px;
+      margin-bottom: 32px;
+      font-size: 106px;
+      font-weight: 650;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      max-width: 1500px;
+      margin-bottom: 38px;
+      color: var(--navy);
+      font-size: 66px;
+      font-weight: 620;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .dark h2 { color: #f4f8fc; }
+
+    h3 {
+      margin-bottom: 14px;
+      color: var(--navy);
+      font-size: 34px;
+      line-height: 1.18;
+    }
+
+    .eyebrow {
+      margin-bottom: 20px;
+      color: var(--steel);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .dark .eyebrow { color: #7dc3ff; }
+
+    .lead {
+      max-width: 1260px;
+      color: var(--slate);
+      font-size: 34px;
+      line-height: 1.43;
+    }
+
+    .dark .lead { color: #cfe1ef; }
+
+    .small {
+      font-size: 24px;
+      line-height: 1.45;
+    }
+
+    .caption {
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.4;
+    }
+
+    .hero-meta {
+      position: absolute;
+      left: 0;
+      bottom: 90px;
+      display: grid;
+      grid-template-columns: 390px 390px;
+      gap: 72px;
+      color: #d9e8f4;
+      font-size: 26px;
+      line-height: 1.35;
+    }
+
+    .hero-meta span {
+      display: block;
+      margin-bottom: 6px;
+      color: #77bcf6;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .prompt-grid,
+    .three-grid,
+    .four-grid {
+      display: grid;
+      gap: 28px;
+    }
+
+    .prompt-grid { grid-template-columns: repeat(3, 1fr); margin-top: 54px; }
+    .three-grid { grid-template-columns: repeat(3, 1fr); }
+    .four-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .prompt-card,
+    .use-card,
+    .lens-card {
+      position: relative;
+      border: 2px solid var(--line);
+      border-radius: 22px;
+      background: #fff;
+    }
+
+    .prompt-card {
+      min-height: 340px;
+      padding: 38px 38px 34px;
+    }
+
+    .prompt-card .number {
+      display: block;
+      margin-bottom: 46px;
+      color: var(--steel);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .prompt-card p {
+      margin: 0;
+      color: var(--navy);
+      font-size: 32px;
+      line-height: 1.35;
+    }
+
+    .facilitation {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 42px;
+      padding: 16px 24px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 24px;
+      font-weight: 750;
+      letter-spacing: 0.02em;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 60px;
+      height: 790px;
+      align-items: center;
+    }
+
+    .media-frame {
+      position: relative;
+      overflow: hidden;
+      height: 650px;
+      border-radius: 20px;
+      background: #dfe7ec;
+      box-shadow: 0 20px 50px rgba(10, 37, 64, 0.15);
+    }
+
+    .media-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .media-frame.contain img { object-fit: contain; background: #fff; }
+
+    .image-label {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      max-width: 76%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: rgba(10, 37, 64, 0.88);
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .statement-list {
+      display: grid;
+      gap: 24px;
+      margin-top: 26px;
+    }
+
+    .statement {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding-top: 22px;
+      border-top: 2px solid var(--line);
+      color: var(--ink);
+      font-size: 28px;
+      line-height: 1.38;
+    }
+
+    .statement strong {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--steel);
+      color: #fff;
+      font-size: 21px;
+    }
+
+    .decision-flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-top: 48px;
+      align-items: stretch;
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 245px;
+      padding: 34px 32px;
+      border-top: 2px solid var(--line);
+      border-bottom: 2px solid var(--line);
+      background: #fff;
+    }
+
+    .flow-step:first-child {
+      border-left: 2px solid var(--line);
+      border-radius: 20px 0 0 20px;
+    }
+
+    .flow-step:last-child {
+      border-right: 2px solid var(--line);
+      border-radius: 0 20px 20px 0;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -16px;
+      z-index: 3;
+      width: 30px;
+      height: 30px;
+      border-top: 4px solid var(--steel);
+      border-right: 4px solid var(--steel);
+      transform: translateY(-50%) rotate(45deg);
+      background: #fff;
+    }
+
+    .flow-step span {
+      display: block;
+      margin-bottom: 28px;
+      color: var(--steel);
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .flow-step h3 { font-size: 30px; }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 24px;
+      line-height: 1.38;
+    }
+
+    .use-card {
+      overflow: hidden;
+      min-height: 560px;
+    }
+
+    .use-card img {
+      display: block;
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+
+    .use-card .use-body { padding: 30px 32px 34px; }
+
+    .use-card ul {
+      margin: 22px 0 0;
+      padding-left: 25px;
+      color: var(--slate);
+      font-size: 24px;
+      line-height: 1.48;
+    }
+
+    .lens-card {
+      min-height: 300px;
+      padding: 34px 38px 34px 118px;
+    }
+
+    .lens-card .lens-code {
+      position: absolute;
+      top: 34px;
+      left: 36px;
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+      background: var(--sky);
+      color: var(--steel-dark);
+      font-size: 24px;
+      font-weight: 850;
+    }
+
+    .lens-card p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 25px;
+      line-height: 1.42;
+    }
+
+    .learning-path {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 34px;
+      margin-top: 48px;
+    }
+
+    .learning-step {
+      position: relative;
+      min-height: 390px;
+      padding: 42px 40px 36px;
+      border-radius: 22px;
+      background: #f4f8fb;
+      border: 2px solid var(--line);
+    }
+
+    .learning-step:nth-child(2) { background: #edf5fb; }
+    .learning-step:nth-child(3) { background: #eaf5f4; }
+
+    .learning-step .verb {
+      margin-bottom: 30px;
+      color: var(--steel-dark);
+      font-size: 56px;
+      font-weight: 680;
+      letter-spacing: -0.03em;
+    }
+
+    .learning-step p {
+      color: var(--slate);
+      font-size: 27px;
+      line-height: 1.44;
+    }
+
+    .learning-step::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -34px;
+      z-index: 4;
+      color: var(--steel);
+      font-size: 54px;
+      font-weight: 700;
+      transform: translateY(-50%);
+    }
+
+    .learning-step:last-child::after { display: none; }
+
+    .bottom-callout {
+      margin-top: 36px;
+      padding: 22px 28px;
+      border-left: 7px solid var(--gold);
+      border-radius: 0 14px 14px 0;
+      background: #fff8e6;
+      color: #5b4719;
+      font-size: 26px;
+      line-height: 1.35;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 42px;
+      margin-top: 82px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 31px;
+      left: 32px;
+      right: 32px;
+      height: 3px;
+      background: var(--line);
+    }
+
+    .phase {
+      position: relative;
+      padding-top: 78px;
+    }
+
+    .phase::before {
+      content: "";
+      position: absolute;
+      top: 16px;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      border: 8px solid #fff;
+      border-radius: 50%;
+      background: var(--steel);
+      box-shadow: 0 0 0 2px var(--steel);
+    }
+
+    .phase .phase-label {
+      display: block;
+      margin-bottom: 16px;
+      color: var(--steel-dark);
+      font-size: 24px;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .phase h3 { font-size: 31px; }
+
+    .phase p {
+      color: var(--slate);
+      font-size: 24px;
+      line-height: 1.42;
+    }
+
+    .setup-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 64px;
+      align-items: center;
+      margin-top: 26px;
+    }
+
+    .setup-steps {
+      display: grid;
+      gap: 20px;
+    }
+
+    .setup-step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 22px;
+      align-items: center;
+      padding: 25px 28px;
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    .setup-step strong {
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--steel);
+      color: #fff;
+      font-size: 24px;
+    }
+
+    .setup-step p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 27px;
+      line-height: 1.35;
+    }
+
+    .action-panel {
+      padding: 42px;
+      border-radius: 22px;
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .action-panel h3 {
+      color: #fff;
+      font-size: 38px;
+    }
+
+    .action-panel p {
+      color: #d5e6f3;
+      font-size: 25px;
+      line-height: 1.43;
+    }
+
+    .action-link {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 18px 25px;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--steel-dark);
+      font-size: 24px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .challenge {
+      display: grid;
+      grid-template-columns: 0.86fr 1.14fr;
+      gap: 60px;
+      margin-top: 20px;
+      align-items: stretch;
+    }
+
+    .challenge-brief {
+      padding: 42px;
+      border-radius: 22px;
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .challenge-brief .time {
+      display: inline-block;
+      margin-bottom: 32px;
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: rgba(125, 195, 255, 0.16);
+      color: #9ed3ff;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .challenge-brief h3 {
+      color: #fff;
+      font-size: 44px;
+    }
+
+    .challenge-brief p {
+      color: #d5e6f3;
+      font-size: 28px;
+      line-height: 1.45;
+    }
+
+    .task-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .task {
+      min-height: 205px;
+      padding: 32px;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .task span {
+      display: block;
+      margin-bottom: 22px;
+      color: var(--steel);
+      font-size: 24px;
+      font-weight: 850;
+    }
+
+    .task p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 26px;
+      line-height: 1.35;
+    }
+
+    .ready-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 52px;
+    }
+
+    .ready-item {
+      min-height: 310px;
+      padding: 38px;
+      border-radius: 20px;
+      border: 2px solid rgba(183, 215, 242, 0.3);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .ready-item .check {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 30px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #fff;
+      font-size: 30px;
+      font-weight: 850;
+    }
+
+    .ready-item p {
+      margin: 0;
+      color: #e5f0f8;
+      font-size: 30px;
+      line-height: 1.4;
+    }
+
+    .exit-ticket {
+      margin-top: 40px;
+      padding: 22px 28px;
+      border-radius: 14px;
+      background: #fff;
+      color: var(--navy);
+      font-size: 27px;
+      font-weight: 700;
+    }
+
+    #controls {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 13px;
+      background: rgba(3, 18, 31, 0.88);
+      backdrop-filter: blur(12px);
+    }
+
+    #controls button {
+      width: 42px;
+      height: 38px;
+      border: 0;
+      border-radius: 8px;
+      background: #173b5b;
+      color: #fff;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    #controls button:hover { background: var(--steel-dark); }
+
+    #counter {
+      min-width: 58px;
+      color: #dce9f3;
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+    }
+
+    #progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 19;
+      width: 0;
+      height: 5px;
+      background: var(--steel);
+      transition: width 180ms ease;
+    }
+
+    .screen-reader-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #progress { transition: none; }
+    }
+
+    @media print {
+      html,
+      body { overflow: visible; background: #fff; }
+      #viewport { position: static; display: block; overflow: visible; }
+      #deck { width: auto; height: auto; transform: none !important; box-shadow: none; }
+      .slide { position: relative; display: block !important; width: 1920px; height: 1080px; break-after: page; }
+      #controls,
+      #progress { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="viewport">
+    <main id="deck" aria-live="polite">
+      <section class="slide dark active" data-label="Welcome" role="group" aria-label="Slide 1 of 11: Welcome to BUS209">
+        <div class="top-rule"></div>
+        <div class="course-tag">Endicott College · Gerrish School of Business</div>
+        <div class="slide-number">01</div>
+        <div class="content">
+          <p class="eyebrow">BUS209 · Fall 2026</p>
+          <h1>FactSet Financial Concepts</h1>
+          <p class="lead">Ask better market questions. Find evidence. Explain what it means.</p>
+          <div class="hero-meta">
+            <div><span>Course</span>One-credit course in financial concepts and applied research</div>
+            <div><span>Professor</span>Bethany Evitts, CFA</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Opening prompt" role="group" aria-label="Slide 2 of 11: Opening prompt">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Start with your why</div>
+        <div class="slide-number">02</div>
+        <div class="content">
+          <p class="eyebrow">Opening conversation</p>
+          <h2>What would make FactSet valuable to you?</h2>
+          <div class="prompt-grid">
+            <article class="prompt-card">
+              <span class="number">01 · ROLE</span>
+              <p>What finance role or career path do you want to understand better?</p>
+            </article>
+            <article class="prompt-card">
+              <span class="number">02 · QUESTION</span>
+              <p>What company, market, or economic question interests you right now?</p>
+            </article>
+            <article class="prompt-card">
+              <span class="number">03 · SKILL</span>
+              <p>What evidence would you like to show a future employer you can find and explain?</p>
+            </article>
+          </div>
+          <div class="facilitation">Think individually → introduce yourself → share one answer</div>
+        </div>
+      </section>
+
+      <section class="slide" data-label="Why information matters" role="group" aria-label="Slide 3 of 11: Why information matters">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Professional context</div>
+        <div class="slide-number">03</div>
+        <div class="content">
+          <div class="split">
+            <figure class="media-frame" style="margin: 0;">
+              <img src="assets/media/image7.jpg" alt="A large financial trading floor filled with desks and computer monitors">
+              <figcaption class="image-label">A professional trading floor concentrates thousands of data-driven decisions in one place.</figcaption>
+            </figure>
+            <div>
+              <p class="eyebrow">Why FactSet matters</p>
+              <h2>Finance careers run on information</h2>
+              <div class="statement-list">
+                <div class="statement"><strong>1</strong><span>Markets move faster than an analyst can rebuild every dataset from scratch.</span></div>
+                <div class="statement"><strong>2</strong><span>Professionals need data, context, and meaningful comparisons—not isolated numbers.</span></div>
+                <div class="statement"><strong>3</strong><span>The advantage comes from turning evidence into a clear decision or recommendation.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Research workflow" role="group" aria-label="Slide 4 of 11: Research workflow">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · From question to decision</div>
+        <div class="slide-number">04</div>
+        <div class="content">
+          <p class="eyebrow">The professional workflow</p>
+          <h2>FactSet connects a question to a defensible conclusion</h2>
+          <p class="lead">The platform is valuable because it keeps the research process connected.</p>
+          <div class="decision-flow">
+            <article class="flow-step"><span>01</span><h3>Question</h3><p>Define the business, market, or investment issue.</p></article>
+            <article class="flow-step"><span>02</span><h3>Evidence</h3><p>Locate financial data, market prices, news, and estimates.</p></article>
+            <article class="flow-step"><span>03</span><h3>Analysis</h3><p>Compare trends, peers, industries, and economic context.</p></article>
+            <article class="flow-step"><span>04</span><h3>Decision</h3><p>Determine what the evidence supports—and what remains uncertain.</p></article>
+            <article class="flow-step"><span>05</span><h3>Deliverable</h3><p>Communicate the conclusion in Excel, PowerPoint, or a live presentation.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-label="Professional use cases" role="group" aria-label="Slide 5 of 11: Professional use cases">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Professional use cases</div>
+        <div class="slide-number">05</div>
+        <div class="content">
+          <p class="eyebrow">Where FactSet is used</p>
+          <h2>Different roles ask different questions with the same platform</h2>
+          <div class="three-grid">
+            <article class="use-card">
+              <img src="assets/media/image10.jpg" alt="Financial market data displayed on a digital screen">
+              <div class="use-body"><h3>Financial markets</h3><ul><li>Equities and fixed income</li><li>Foreign exchange and commodities</li><li>Options, futures, and market performance</li></ul></div>
+            </article>
+            <article class="use-card">
+              <img src="assets/media/image11.jpg" alt="Financial professionals discussing analysis in a meeting">
+              <div class="use-body"><h3>Investment research</h3><ul><li>Asset managers and financial advisors</li><li>Industry and company analysts</li><li>Portfolio and risk decisions</li></ul></div>
+            </article>
+            <article class="use-card">
+              <img src="assets/media/image8.jpeg" alt="Professionals walking across a floor overlaid with market information">
+              <div class="use-body"><h3>Business intelligence</h3><ul><li>Corporate strategy and competitive analysis</li><li>Real estate and sector research</li><li>News, apps, and professional reporting</li></ul></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Four finance lenses" role="group" aria-label="Slide 6 of 11: Four finance lenses">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Course content</div>
+        <div class="slide-number">06</div>
+        <div class="content">
+          <p class="eyebrow">What you will learn</p>
+          <h2>Four finance lenses shape the questions we ask</h2>
+          <div class="four-grid">
+            <article class="lens-card"><span class="lens-code">EI</span><h3>Economic indicators</h3><p>Use leading, coincident, and lagging information to gauge the health and direction of an economy.</p></article>
+            <article class="lens-card"><span class="lens-code">FX</span><h3>Currencies</h3><p>Explain the forces behind currency values and how investors and businesses manage currency risk.</p></article>
+            <article class="lens-card"><span class="lens-code">FI</span><h3>Fixed income</h3><p>Compare yields across bonds and interpret what movements in the yield curve may signal.</p></article>
+            <article class="lens-card"><span class="lens-code">EQ</span><h3>Equities</h3><p>Connect company and index performance to relative valuation, growth expectations, and fair value.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-label="How class works" role="group" aria-label="Slide 7 of 11: How class works">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Learning model</div>
+        <div class="slide-number">07</div>
+        <div class="content">
+          <p class="eyebrow">How we will learn</p>
+          <h2>Every class moves from concepts to evidence to explanation</h2>
+          <div class="learning-path">
+            <article class="learning-step"><div class="verb">Learn</div><p>Build the financial concept and complete FactSet certification modules.</p></article>
+            <article class="learning-step"><div class="verb">Practice</div><p>Use FactSet in class to find, compare, and interpret real financial information.</p></article>
+            <article class="learning-step"><div class="verb">Present</div><p>Explain what the evidence means through live demonstrations and professional deliverables.</p></article>
+          </div>
+          <div class="bottom-callout"><strong>The goal is not to memorize tabs.</strong> The goal is to use the platform to answer a financial question clearly.</div>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Course roadmap" role="group" aria-label="Slide 8 of 11: Course roadmap">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Course roadmap</div>
+        <div class="slide-number">08</div>
+        <div class="content">
+          <p class="eyebrow">Your path through the semester</p>
+          <h2>Each phase adds a new lens and a new presentation challenge</h2>
+          <div class="timeline">
+            <article class="phase"><span class="phase-label">Weeks 1–4</span><h3>Economic indicators &amp; markets</h3><p>Explore market information and explain a country-level economic indicator.</p></article>
+            <article class="phase"><span class="phase-label">Weeks 6–8</span><h3>Equities &amp; research</h3><p>Investigate a company, its industry, accounting information, and ESG context.</p></article>
+            <article class="phase"><span class="phase-label">Late semester</span><h3>Fixed income &amp; credit</h3><p>Apply yield and credit concepts and present fixed-income market evidence.</p></article>
+            <article class="phase"><span class="phase-label">Final class &amp; finals</span><h3>Synthesis &amp; certifications</h3><p>Deliver the final FactSet presentation and complete required certifications.</p></article>
+          </div>
+          <div class="bottom-callout">Canvas is the source for current due dates and any schedule changes.</div>
+        </div>
+      </section>
+
+      <section class="slide" data-label="Access and setup" role="group" aria-label="Slide 9 of 11: Access and setup">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Before class</div>
+        <div class="slide-number">09</div>
+        <div class="content">
+          <p class="eyebrow">Get ready to work</p>
+          <h2>Complete your FactSet setup before you need it</h2>
+          <div class="setup-grid">
+            <div class="setup-steps">
+              <article class="setup-step"><strong>1</strong><p>Activate FactSet with your Endicott email address.</p></article>
+              <article class="setup-step"><strong>2</strong><p>Add FactSet 365 to Excel and sign in to the add-in.</p></article>
+              <article class="setup-step"><strong>3</strong><p>Confirm that you can open FactSet for the Web before class.</p></article>
+            </div>
+            <aside class="action-panel">
+              <h3>Use the Canvas guide</h3>
+              <p>The course page walks you through account activation and the Excel add-in.</p>
+              <a class="action-link" href="https://endicott.instructure.com/courses/58337/pages/activate-factset-and-add-it-to-excel" target="_blank" rel="noopener">Activate FactSet and Add It to Excel ↗</a>
+              <p class="small" style="margin-top: 28px;">If something fails, bring the exact error message or screenshot to class.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="First live task" role="group" aria-label="Slide 10 of 11: First live task">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Live practice</div>
+        <div class="slide-number">10</div>
+        <div class="content">
+          <p class="eyebrow">Your first FactSet task</p>
+          <h2>Build a four-point company snapshot</h2>
+          <div class="challenge">
+            <aside class="challenge-brief">
+              <span class="time">Company scavenger hunt</span>
+              <h3>Choose a public company you recognize</h3>
+              <p>Work independently first. Then compare what you found with a partner.</p>
+              <p><strong>Finish by asking:</strong><br>What would you investigate next—and why?</p>
+            </aside>
+            <div class="task-list">
+              <article class="task"><span>01 · IDENTITY</span><p>Company name and ticker</p></article>
+              <article class="task"><span>02 · MARKET</span><p>Most recent share price</p></article>
+              <article class="task"><span>03 · SCALE</span><p>Market capitalization</p></article>
+              <article class="task"><span>04 · CONTEXT</span><p>One recent news item that matters</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark" data-label="Ready to begin" role="group" aria-label="Slide 11 of 11: Ready to begin">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Ready to begin</div>
+        <div class="slide-number">11</div>
+        <div class="content">
+          <p class="eyebrow">What success looks like today</p>
+          <h2>You are ready when you can do three things</h2>
+          <div class="ready-grid">
+            <article class="ready-item"><div class="check">✓</div><p>Explain what FactSet helps finance professionals do.</p></article>
+            <article class="ready-item"><div class="check">✓</div><p>Access FactSet and identify where to get setup help.</p></article>
+            <article class="ready-item"><div class="check">✓</div><p>Name one market question you want to investigate.</p></article>
+          </div>
+          <div class="exit-ticket">Exit ticket: What do you want FactSet to help you learn this semester?</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="progress" aria-hidden="true"></div>
+  <nav id="controls" aria-label="Slide controls">
+    <button id="previous" type="button" aria-label="Previous slide">←</button>
+    <span id="counter" aria-live="polite">1 / 11</span>
+    <button id="next" type="button" aria-label="Next slide">→</button>
+    <button id="fullscreen" type="button" aria-label="Enter fullscreen">⛶</button>
+  </nav>
+  <p class="screen-reader-only" id="keyboard-help">Use the left and right arrow keys to move between slides. Press F for fullscreen.</p>
+
+  <script>
+    (() => {
+      const deck = document.getElementById('deck');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const counter = document.getElementById('counter');
+      const progress = document.getElementById('progress');
+      const previous = document.getElementById('previous');
+      const next = document.getElementById('next');
+      const fullscreen = document.getElementById('fullscreen');
+      let index = Math.max(0, Math.min(slides.length - 1, Number(location.hash.slice(1)) - 1 || 0));
+
+      function scaleDeck() {
+        const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+        deck.style.transform = `scale(${scale})`;
+      }
+
+      function showSlide(target, updateHash = true) {
+        index = Math.max(0, Math.min(slides.length - 1, target));
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle('active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+        counter.textContent = `${index + 1} / ${slides.length}`;
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+        document.title = `BUS209 · ${slides[index].dataset.label}`;
+        if (updateHash) history.replaceState(null, '', `#${index + 1}`);
+      }
+
+      function move(delta) { showSlide(index + delta); }
+
+      previous.addEventListener('click', () => move(-1));
+      next.addEventListener('click', () => move(1));
+      fullscreen.addEventListener('click', () => {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.target instanceof HTMLAnchorElement) return;
+        if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); move(1); }
+        if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); move(-1); }
+        if (event.key === 'Home') { event.preventDefault(); showSlide(0); }
+        if (event.key === 'End') { event.preventDefault(); showSlide(slides.length - 1); }
+        if (event.key.toLowerCase() === 'f') fullscreen.click();
+      });
+
+      window.addEventListener('resize', scaleDeck);
+      window.addEventListener('hashchange', () => {
+        const target = Number(location.hash.slice(1)) - 1;
+        if (Number.isFinite(target)) showSlide(target, false);
+      });
+
+      scaleDeck();
+      showSlide(index, false);
+    })();
+  </script>
+</body>
+</html>

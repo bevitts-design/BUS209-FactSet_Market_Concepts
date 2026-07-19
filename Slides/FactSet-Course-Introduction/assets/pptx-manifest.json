@@ -1,0 +1,443 @@
+{
+  "pptx": "/Users/bethanyevittsair2/Library/CloudStorage/OneDrive-Personal/EC_Teaching/BUS209 FactSet Market Concepts/BME- FA2025 - FactSet/FactSet Course Introduction.pptx",
+  "slides": [
+    {
+      "slide": 1,
+      "texts": [
+        {
+          "text": "FactSet Market Concepts",
+          "box": null
+        },
+        {
+          "text": "Endicott College\\nGerrish school of Business :  BUS209-1\\nProfessor Bethany Evitts",
+          "box": null
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 2,
+      "texts": [
+        {
+          "text": "What is your Why?",
+          "box": {
+            "x": 648930,
+            "y": 629266,
+            "cx": 6188190,
+            "cy": 1622321
+          }
+        },
+        {
+          "text": "Introduce Yourself\\nWhy learn about FactSet?\\nWhy are you interested in learning about the most?",
+          "box": {
+            "x": 648930,
+            "y": 2438400,
+            "cx": 6188189,
+            "cy": 3785419
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image6.jpeg",
+          "box": {
+            "x": 7229175,
+            "y": 1,
+            "cx": 4963245,
+            "cy": 6858001
+          }
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "texts": [
+        {
+          "text": "What is my Why?",
+          "box": {
+            "x": 648930,
+            "y": 629266,
+            "cx": 6188190,
+            "cy": 1622321
+          }
+        },
+        {
+          "text": "Introductions\\nWhy this class?",
+          "box": {
+            "x": 648930,
+            "y": 2438400,
+            "cx": 6188189,
+            "cy": 3785419
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image6.jpeg",
+          "box": {
+            "x": 7229175,
+            "y": 1,
+            "cx": 4963245,
+            "cy": 6858001
+          }
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "texts": [
+        {
+          "text": "Why is this picture important?",
+          "box": null
+        },
+        {
+          "text": "With 1,400 seats, 2,000 computers and 5,000 monitors, the\u00a0UBS trading floor\u00a0is noted by the Guinness Book of World Records as the largest. (source Glassdoor)\\nVery likely most seats on this floor had a Bloomberg &/or FactSet!",
+          "box": {
+            "x": 1154956,
+            "y": 5367325,
+            "cx": 8825656,
+            "cy": 679064
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image7.jpg",
+          "box": {
+            "x": 1154956,
+            "y": 811611,
+            "cx": 8825658,
+            "cy": 3640666
+          }
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "texts": [
+        {
+          "text": "Global Presence and Client Base",
+          "box": {
+            "x": 7123007,
+            "y": 603501,
+            "cx": 4361693,
+            "cy": 1527049
+          }
+        },
+        {
+          "text": "Company Foundation\\nFactSet was founded in 1978 to provide innovative financial data solutions to the market.\\nGrowth Over Decades\\nThe company steadily grew to become a global leader in financial analytics.\\nWorldwide Clientele\\nFactSet supports a diverse global client base including asset managers and investment bankers.\\nGlobal Office Network\\nFactSet operates offices in major financial hubs worldwide to serve clients effectively.",
+          "box": {
+            "x": 7123007,
+            "y": 2212846,
+            "cx": 4361693,
+            "cy": 4096514
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image8.jpeg",
+          "box": {
+            "x": 1,
+            "y": 10,
+            "cx": 6373368,
+            "cy": 6857990
+          }
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "texts": [
+        {
+          "text": "Where is FactSet being used?",
+          "box": null
+        },
+        {
+          "text": "Financial Markets",
+          "box": null
+        },
+        {
+          "text": "Equity & Fixed Income\\nOptions & Futures\\nCommodities\\nCrypto Currencies\\nForeign Exchange",
+          "box": {
+            "x": 652463,
+            "y": 4827210,
+            "cx": 2940050,
+            "cy": 1578071
+          }
+        },
+        {
+          "text": "Asset Management",
+          "box": null
+        },
+        {
+          "text": "Asset Managers\\nFinancial Advisors\\nIndustry Analysts\\nResearch",
+          "box": {
+            "x": 3888022,
+            "y": 4827210,
+            "cx": 2934406,
+            "cy": 1304291
+          }
+        },
+        {
+          "text": "Other Areas",
+          "box": null
+        },
+        {
+          "text": "Real Estate\\nMedical/Pharma Research\\nBusiness Management\\nApps & News",
+          "box": {
+            "x": 7124575,
+            "y": 4827208,
+            "cx": 2935997,
+            "cy": 1400530
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image9.png",
+          "box": null
+        },
+        {
+          "src": "assets/media/image10.jpg",
+          "box": null
+        },
+        {
+          "src": "assets/media/image11.jpg",
+          "box": null
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "texts": [
+        {
+          "text": "What will this class include?",
+          "box": null
+        },
+        {
+          "text": "Earning FactSet Essentials: Core Products & Productivity Suite Certification + 1 additional module",
+          "box": {
+            "x": 671512,
+            "y": 2614911,
+            "cx": 2946866,
+            "cy": 1447800
+          }
+        },
+        {
+          "text": "Great addition to your resume",
+          "box": {
+            "x": 671512,
+            "y": 4037847,
+            "cx": 2927350,
+            "cy": 2494829
+          }
+        },
+        {
+          "text": "Opportunity to learn the characteristic of core areas of Finance",
+          "box": {
+            "x": 3873106,
+            "y": 2209799,
+            "cx": 2936241,
+            "cy": 1447799
+          }
+        },
+        {
+          "text": "Economic Indicators\\nFixed Income/Currency\\nEquities",
+          "box": {
+            "x": 3873106,
+            "y": 3761508,
+            "cx": 2946794,
+            "cy": 2494830
+          }
+        },
+        {
+          "text": "Hands on experience with the FactSet system",
+          "box": {
+            "x": 7124700,
+            "y": 1981200,
+            "cx": 2932113,
+            "cy": 1447798
+          }
+        },
+        {
+          "text": "FactSet Basics\\nPresentations on core areas of finance with FactSet data",
+          "box": {
+            "x": 7124700,
+            "y": 3761508,
+            "cx": 2932113,
+            "cy": 2494830
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 8,
+      "texts": [],
+      "images": [
+        {
+          "src": "assets/media/image12.png",
+          "box": {
+            "x": 1289967,
+            "y": 85258,
+            "cx": 9612066,
+            "cy": 6687483
+          }
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "texts": [
+        {
+          "text": "Note:\\nYou can still use FactSet to help you answer the questions",
+          "box": {
+            "x": 7384028,
+            "y": 3931757,
+            "cx": 3845482,
+            "cy": 923330
+          }
+        },
+        {
+          "text": "Extra:\\nOffice Integration",
+          "box": {
+            "x": 7384028,
+            "y": 5026374,
+            "cx": 3845482,
+            "cy": 646331
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image13.emf",
+          "box": {
+            "x": 7384028,
+            "y": 1016618,
+            "cx": 4019550,
+            "cy": 2743852
+          }
+        },
+        {
+          "src": "assets/media/image14.png",
+          "box": {
+            "x": 766267,
+            "y": 783703,
+            "cx": 6132283,
+            "cy": 5481172
+          }
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "texts": [],
+      "images": [
+        {
+          "src": "assets/media/image15.png",
+          "box": {
+            "x": 3963346,
+            "y": 1174803,
+            "cx": 4030844,
+            "cy": 3012525
+          }
+        },
+        {
+          "src": "assets/media/image16.png",
+          "box": {
+            "x": 643466,
+            "y": 4187330,
+            "cx": 10137246,
+            "cy": 2027202
+          }
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "texts": [
+        {
+          "text": "Presentations:\\nCountry Economic Indicator & Marets\\nEquity Pitchbook\\nCredit Analysis\\nFinal Project",
+          "box": {
+            "x": 2714625,
+            "y": 1814513,
+            "cx": 6715125,
+            "cy": 1754326
+          }
+        },
+        {
+          "text": "FactSet Certifications \u2013 E Learning Platform:\\nCore Product\\nProductivity Suite\\nChoice #1\\nChoice #2",
+          "box": {
+            "x": 2738437,
+            "y": 3783807,
+            "cx": 6715125,
+            "cy": 1754326
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 12,
+      "texts": [
+        {
+          "text": "Any questions?",
+          "box": {
+            "x": 1154955,
+            "y": 1447800,
+            "cx": 6974915,
+            "cy": 3329581
+          }
+        },
+        {
+          "text": "Let\u2019s Get Started!",
+          "box": {
+            "x": 2494716,
+            "y": 5600700,
+            "cx": 6347948,
+            "cy": 369332
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image2.png",
+          "box": {
+            "x": 0,
+            "y": 2669685,
+            "cx": 4037012,
+            "cy": 4188315
+          }
+        },
+        {
+          "src": "assets/media/image3.png",
+          "box": {
+            "x": 0,
+            "y": 2892347,
+            "cx": 1522412,
+            "cy": 2365453
+          }
+        },
+        {
+          "src": "assets/media/image4.png",
+          "box": {
+            "x": 7999412,
+            "y": 0,
+            "cx": 1603387,
+            "cy": 1141407
+          }
+        },
+        {
+          "src": "assets/media/image5.png",
+          "box": {
+            "x": 8605878,
+            "y": 6096000,
+            "cx": 993734,
+            "cy": 762000
+          }
+        }
+      ]
+    }
+  ]
+}
