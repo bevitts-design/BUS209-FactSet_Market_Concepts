@@ -1,0 +1,979 @@
+{
+  "pptx": "Slides/FactSet Fundamentals.pptx",
+  "slides": [
+    {
+      "slide": 1,
+      "texts": [
+        {
+          "text": "Gerrish School of Business",
+          "box": {
+            "x": 0,
+            "y": 9525,
+            "cx": 7426210,
+            "cy": 1226955
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image1.jpeg",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 8569579,
+            "cy": 4820412
+          }
+        },
+        {
+          "src": "assets/media/image2.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 2946654,
+            "cy": 1278255
+          }
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "texts": [
+        {
+          "text": "Activation",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 2959849,
+            "cy": 460008
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image3.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 11400409,
+            "cy": 7923276
+          }
+        },
+        {
+          "src": "assets/media/image4.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 3203689,
+            "cy": 534303
+          }
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "texts": [
+        {
+          "text": "Note:\\nYou can still use FactSet to help you answer the questions",
+          "box": {
+            "x": 5998662,
+            "y": 4067426,
+            "cx": 2893506,
+            "cy": 709946
+          }
+        },
+        {
+          "text": "Extra:\\nOffice Integration",
+          "box": {
+            "x": 5998662,
+            "y": 4943120,
+            "cx": 2893506,
+            "cy": 488346
+          }
+        },
+        {
+          "text": "E-learning Site for FactSet",
+          "box": {
+            "x": 642730,
+            "y": 835632,
+            "cx": 3983604,
+            "cy": 350139
+          }
+        },
+        {
+          "text": "E-learning",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 2959849,
+            "cy": 460008
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image6.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 10533761,
+            "cy": 7032117
+          }
+        },
+        {
+          "src": "assets/media/image4.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 3203689,
+            "cy": 534303
+          }
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "texts": [
+        {
+          "text": "Note:\\nYou can still use FactSet to help you answer the questions",
+          "box": {
+            "x": 5998662,
+            "y": 4067426,
+            "cx": 2893506,
+            "cy": 709946
+          }
+        },
+        {
+          "text": "Extra:\\nOffice Integration",
+          "box": {
+            "x": 5998662,
+            "y": 4943120,
+            "cx": 2893506,
+            "cy": 488346
+          }
+        },
+        {
+          "text": "On-Line Help",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 2959849,
+            "cy": 460008
+          }
+        },
+        {
+          "text": "Top right corner of FactSet",
+          "box": {
+            "x": 409491,
+            "y": 2366084,
+            "cx": 2849217,
+            "cy": 350139
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image4.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 3203689,
+            "cy": 534303
+          }
+        },
+        {
+          "src": "assets/media/image7.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 7751572,
+            "cy": 7025386
+          }
+        },
+        {
+          "src": "assets/media/image8.png",
+          "box": {
+            "x": 572494,
+            "y": 1144988,
+            "cx": 975360,
+            "cy": 975360
+          }
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "texts": [
+        {
+          "text": "5",
+          "box": {
+            "x": 0,
+            "y": -28575,
+            "cx": 2926080,
+            "cy": 547864
+          }
+        },
+        {
+          "text": "Shortcut Manager - Hot Keys \u2013ex. CG \u2013Company Guide",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 8647188,
+            "cy": 460008
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image10.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 4417822,
+            "cy": 2711958
+          }
+        },
+        {
+          "src": "assets/media/image11.png",
+          "box": {
+            "x": -3402,
+            "y": -6375,
+            "cx": 4990939,
+            "cy": 7321578
+          }
+        },
+        {
+          "src": "assets/media/image13.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 8891028,
+            "cy": 534303
+          }
+        },
+        {
+          "src": "assets/media/image15.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 13004800,
+            "cy": 7109587
+          }
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "texts": [
+        {
+          "text": "Today\u2019s Top News",
+          "box": {
+            "x": 4170100,
+            "y": 341877,
+            "cx": 5393035,
+            "cy": 495452
+          }
+        },
+        {
+          "text": "6",
+          "box": {
+            "x": 0,
+            "y": -28575,
+            "cx": 2926080,
+            "cy": 547864
+          }
+        },
+        {
+          "text": "Workspace \u2013 My Version",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 4590255,
+            "cy": 460008
+          }
+        },
+        {
+          "text": "News 2.0",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 7434553,
+            "cy": 795223
+          }
+        },
+        {
+          "text": "Markets",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 7434553,
+            "cy": 795223
+          }
+        },
+        {
+          "text": "Watchlist",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 7434553,
+            "cy": 795223
+          }
+        },
+        {
+          "text": "Company/Security",
+          "box": {
+            "x": 121920,
+            "y": 99060,
+            "cx": 7190713,
+            "cy": 673303
+          }
+        },
+        {
+          "text": "Charting",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 7434553,
+            "cy": 795223
+          }
+        },
+        {
+          "text": "Economics",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 7434553,
+            "cy": 795223
+          }
+        },
+        {
+          "text": "Industry",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 7434553,
+            "cy": 795223
+          }
+        },
+        {
+          "text": "More Tab options (Options, Privates etc.)\\nAbility to create different Workspaces based on role\\nAbility to Create a Custom Tab for information",
+          "box": {
+            "x": 367084,
+            "y": 4079764,
+            "cx": 3071611,
+            "cy": 1827466
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image10.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 4417822,
+            "cy": 2711958
+          }
+        },
+        {
+          "src": "assets/media/image11.png",
+          "box": {
+            "x": -3402,
+            "y": -6375,
+            "cx": 4990939,
+            "cy": 7321578
+          }
+        },
+        {
+          "src": "assets/media/image16.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 4834095,
+            "cy": 534303
+          }
+        },
+        {
+          "src": "assets/media/image18.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 7434553,
+            "cy": 833323
+          }
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "texts": [
+        {
+          "text": "Company Information",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 5164019,
+            "cy": 900926
+          }
+        },
+        {
+          "text": "Company/Security Tab \u2013at the Top\\nReports- Down Left Side\\nOverview - Snapshot\\nPerformance\\nStock price history\\nWACC (Snapshot/Key Stats) - click on the blue number\\nFinancial Highlights\\nKey People",
+          "box": {
+            "x": 449884,
+            "y": 2706788,
+            "cx": 4342412,
+            "cy": 3836251
+          }
+        },
+        {
+          "text": "7",
+          "box": {
+            "x": 0,
+            "y": -28575,
+            "cx": 2926080,
+            "cy": 547864
+          }
+        },
+        {
+          "text": "What am I looking for?",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 4590255,
+            "cy": 460008
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image20.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 7796276,
+            "cy": 4785741
+          }
+        },
+        {
+          "src": "assets/media/image10.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 7796276,
+            "cy": 4785741
+          }
+        },
+        {
+          "src": "assets/media/image16.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 4834095,
+            "cy": 534303
+          }
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "texts": [
+        {
+          "text": "8",
+          "box": {
+            "x": 0,
+            "y": -28575,
+            "cx": 2926080,
+            "cy": 547864
+          }
+        },
+        {
+          "text": "Overview -Snapshot",
+          "box": {
+            "x": 0,
+            "y": -47625,
+            "cx": 4852157,
+            "cy": 599991
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image21.png",
+          "box": {
+            "x": 494302,
+            "y": 2725020,
+            "cx": 2644716,
+            "cy": 60147
+          }
+        },
+        {
+          "src": "assets/media/image23.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 5338572,
+            "cy": 5098161
+          }
+        },
+        {
+          "src": "assets/media/image24.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 6850380,
+            "cy": 6803771
+          }
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "texts": [
+        {
+          "text": "FactSet \u2013 How to find information?",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 3809931,
+            "cy": 2470666
+          }
+        },
+        {
+          "text": "9",
+          "box": {
+            "x": 0,
+            "y": -28575,
+            "cx": 2926080,
+            "cy": 547864
+          }
+        },
+        {
+          "text": "Comp Analysis",
+          "box": {
+            "x": 393664,
+            "y": 5080957,
+            "cx": 2421196,
+            "cy": 350139
+          }
+        },
+        {
+          "text": "Overview \u2013Comp Analysis",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 4590255,
+            "cy": 460008
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image21.png",
+          "box": {
+            "x": 494302,
+            "y": 4682898,
+            "cx": 2644716,
+            "cy": 60147
+          }
+        },
+        {
+          "src": "assets/media/image25.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 7695565,
+            "cy": 4559681
+          }
+        },
+        {
+          "src": "assets/media/image26.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 4834095,
+            "cy": 534303
+          }
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "texts": [
+        {
+          "text": "10",
+          "box": {
+            "x": 0,
+            "y": -28575,
+            "cx": 2926080,
+            "cy": 547864
+          }
+        },
+        {
+          "text": "Click on an Earning Call - Read the transcript, evaluate the topics, Look at the AI generated Themes",
+          "box": {
+            "x": 3279830,
+            "y": 826356,
+            "cx": 5221746,
+            "cy": 941070
+          }
+        },
+        {
+          "text": "News, Research and Filings- Events & Transcripts",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 9608412,
+            "cy": 460008
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image21.png",
+          "box": {
+            "x": 494302,
+            "y": 4682898,
+            "cx": 2644716,
+            "cy": 60147
+          }
+        },
+        {
+          "src": "assets/media/image28.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 8499475,
+            "cy": 7034911
+          }
+        },
+        {
+          "src": "assets/media/image10.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 3413760,
+            "cy": 2004949
+          }
+        },
+        {
+          "src": "assets/media/image29.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 9852252,
+            "cy": 534303
+          }
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "texts": [
+        {
+          "text": "11",
+          "box": {
+            "x": 0,
+            "y": -28575,
+            "cx": 2926080,
+            "cy": 547864
+          }
+        },
+        {
+          "text": "Sector Intelligence \u2013 Data Center Intelligence Report",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 9608412,
+            "cy": 460008
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image21.png",
+          "box": {
+            "x": 494302,
+            "y": 4682898,
+            "cx": 2644716,
+            "cy": 60147
+          }
+        },
+        {
+          "src": "assets/media/image10.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 3413760,
+            "cy": 2004949
+          }
+        },
+        {
+          "src": "assets/media/image29.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 9852252,
+            "cy": 534303
+          }
+        },
+        {
+          "src": "assets/media/image31.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 8589772,
+            "cy": 7763383
+          }
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "texts": [
+        {
+          "text": "12",
+          "box": {
+            "x": 0,
+            "y": -28575,
+            "cx": 2926080,
+            "cy": 547864
+          }
+        },
+        {
+          "text": "Industry \u2013Overviews -Snapshot",
+          "box": {
+            "x": 0,
+            "y": 95250,
+            "cx": 6511431,
+            "cy": 738073
+          }
+        },
+        {
+          "text": "How to Industry  information?",
+          "box": {
+            "x": 0,
+            "y": 28575,
+            "cx": 3265754,
+            "cy": 2184121
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image21.png",
+          "box": {
+            "x": 494302,
+            "y": 4682898,
+            "cx": 2644716,
+            "cy": 60147
+          }
+        },
+        {
+          "src": "assets/media/image32.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 9018524,
+            "cy": 7009765
+          }
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "texts": [
+        {
+          "text": "13",
+          "box": {
+            "x": 0,
+            "y": -28575,
+            "cx": 2926080,
+            "cy": 547864
+          }
+        },
+        {
+          "text": "Industry \u2013Financials \u2013Key Items",
+          "box": {
+            "x": 0,
+            "y": 28575,
+            "cx": 7557470,
+            "cy": 804748
+          }
+        },
+        {
+          "text": "How to Industry  information?",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 5668396,
+            "cy": 1635928
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image21.png",
+          "box": {
+            "x": 494302,
+            "y": 4682898,
+            "cx": 2644716,
+            "cy": 60147
+          }
+        },
+        {
+          "src": "assets/media/image33.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 6751447,
+            "cy": 3448812
+          }
+        },
+        {
+          "src": "assets/media/image34.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 9184640,
+            "cy": 3956050
+          }
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "texts": [
+        {
+          "text": "Office Integrations \u2013 Template Library",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 6310071,
+            "cy": 460008
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image35.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 6553911,
+            "cy": 534303
+          }
+        },
+        {
+          "src": "assets/media/image37.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 10531094,
+            "cy": 7270242
+          }
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "texts": [
+        {
+          "text": "Office Integrations \u2013 Template Library",
+          "box": {
+            "x": 121920,
+            "y": 13335,
+            "cx": 6310071,
+            "cy": 460008
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image35.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 6553911,
+            "cy": 534303
+          }
+        },
+        {
+          "src": "assets/media/image38.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 13004800,
+            "cy": 3091815
+          }
+        },
+        {
+          "src": "assets/media/image39.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 13004800,
+            "cy": 4876800
+          }
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "texts": [
+        {
+          "text": "Economics -Calendar",
+          "box": {
+            "x": 0,
+            "y": 38100,
+            "cx": 7434553,
+            "cy": 795223
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image40.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 11789156,
+            "cy": 6394323
+          }
+        }
+      ]
+    },
+    {
+      "slide": 17,
+      "texts": [
+        {
+          "text": "Economics \u2013Country Region(subtab)- Corporate Finance -Snapshot",
+          "box": {
+            "x": 0,
+            "y": 76200,
+            "cx": 13013831,
+            "cy": 757123
+          }
+        },
+        {
+          "text": "Understanding a Country\u2019s Economic Environment \u2013 Monetary, Fiscal and Industrial",
+          "box": {
+            "x": 563217,
+            "y": 648160,
+            "cx": 8537051,
+            "cy": 350139
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image41.png",
+          "box": {
+            "x": 0,
+            "y": 0,
+            "cx": 11746738,
+            "cy": 7478268
+          }
+        }
+      ]
+    }
+  ]
+}

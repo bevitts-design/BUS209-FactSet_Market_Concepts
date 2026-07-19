@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUS209 · FactSet Fundamentals</title>
+  <style>
+    :root {
+      --navy: #0a2540;
+      --navy-2: #12304a;
+      --steel: #2d7dd2;
+      --steel-dark: #175fa9;
+      --teal: #1b998b;
+      --gold: #e6a817;
+      --ink: #243746;
+      --slate: #586b7a;
+      --muted: #7c8d9a;
+      --line: #d8e3e8;
+      --sky: #edf5fb;
+      --pale: #eaf5f4;
+      --paper: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #061a2c;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button,
+    a { font: inherit; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 5px solid #f4bd37;
+      outline-offset: 5px;
+    }
+
+    #viewport {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    #deck {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      transform-origin: center center;
+      background: var(--paper);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      overflow: hidden;
+      padding: 72px 86px 68px;
+      background: var(--paper);
+    }
+
+    .slide.active { display: block; }
+
+    .slide.dark {
+      color: #f4f8fc;
+      background:
+        radial-gradient(circle at 84% 24%, rgba(45, 125, 210, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--navy) 0%, #0c3154 100%);
+    }
+
+    .slide.soft { background: #f6f9fc; }
+
+    .top-rule {
+      position: absolute;
+      top: 48px;
+      left: 64px;
+      right: 64px;
+      height: 2px;
+      background: var(--line);
+    }
+
+    .dark .top-rule { background: rgba(183, 215, 242, 0.55); }
+
+    .course-tag,
+    .slide-number {
+      position: absolute;
+      top: 60px;
+      z-index: 3;
+      color: var(--muted);
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .course-tag { left: 64px; }
+    .slide-number { right: 64px; }
+    .dark .course-tag,
+    .dark .slide-number { color: #9ab6cd; }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      padding-top: 54px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1 {
+      max-width: 1280px;
+      margin-bottom: 32px;
+      font-size: 104px;
+      font-weight: 650;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    h2 {
+      max-width: 1570px;
+      margin-bottom: 32px;
+      color: var(--navy);
+      font-size: 62px;
+      font-weight: 620;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .dark h2 { color: #f4f8fc; }
+
+    h3 {
+      margin-bottom: 13px;
+      color: var(--navy);
+      font-size: 33px;
+      line-height: 1.2;
+    }
+
+    .eyebrow {
+      margin-bottom: 18px;
+      color: var(--steel);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .dark .eyebrow { color: #7dc3ff; }
+
+    .lead {
+      max-width: 1370px;
+      color: var(--slate);
+      font-size: 32px;
+      line-height: 1.42;
+    }
+
+    .dark .lead { color: #cfe1ef; }
+
+    .hero-meta {
+      position: absolute;
+      left: 0;
+      bottom: 90px;
+      display: grid;
+      grid-template-columns: 360px 560px;
+      gap: 72px;
+      color: #d9e8f4;
+      font-size: 26px;
+      line-height: 1.35;
+    }
+
+    .hero-meta span {
+      display: block;
+      margin-bottom: 7px;
+      color: #77bcf6;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .case-grid,
+    .screen-split,
+    .two-screen,
+    .macro-grid,
+    .excel-grid,
+    .challenge-grid {
+      display: grid;
+      align-items: stretch;
+      gap: 42px;
+    }
+
+    .case-grid { grid-template-columns: 0.72fr 1.28fr; margin-top: 24px; }
+    .screen-split { grid-template-columns: 0.56fr 1.44fr; }
+    .two-screen { grid-template-columns: repeat(2, 1fr); }
+    .macro-grid { grid-template-columns: 1fr 1fr; }
+    .excel-grid { grid-template-columns: 0.92fr 1.08fr; }
+    .challenge-grid { grid-template-columns: 0.72fr 1.28fr; }
+
+    .case-brief,
+    .question-panel,
+    .activity-brief,
+    .challenge-brief {
+      border-radius: 22px;
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .case-brief { padding: 42px; }
+
+    .case-brief .case-code,
+    .activity-label {
+      display: inline-block;
+      margin-bottom: 30px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(125, 195, 255, 0.17);
+      color: #9ed3ff;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .case-brief h3,
+    .activity-brief h3,
+    .challenge-brief h3 {
+      color: #fff;
+      font-size: 42px;
+    }
+
+    .case-brief p,
+    .activity-brief p,
+    .challenge-brief p {
+      color: #dcebf6;
+      font-size: 27px;
+      line-height: 1.42;
+    }
+
+    .question-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .question-card,
+    .resource-card,
+    .research-card,
+    .task-card,
+    .evidence-card {
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .question-card {
+      min-height: 196px;
+      padding: 30px;
+    }
+
+    .question-card span,
+    .research-card span,
+    .task-card span,
+    .evidence-card span {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--steel);
+      font-size: 24px;
+      font-weight: 850;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .question-card p,
+    .research-card p,
+    .task-card p,
+    .evidence-card p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 26px;
+      line-height: 1.36;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 16px;
+      margin-top: 54px;
+    }
+
+    .workflow-step {
+      position: relative;
+      min-height: 290px;
+      padding: 30px 24px;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .workflow-step::after {
+      content: "→";
+      position: absolute;
+      top: 46%;
+      right: -23px;
+      z-index: 3;
+      color: var(--steel);
+      font-size: 34px;
+      font-weight: 800;
+    }
+
+    .workflow-step:last-child::after { display: none; }
+
+    .workflow-step strong {
+      display: block;
+      margin-bottom: 42px;
+      color: var(--steel);
+      font-size: 26px;
+    }
+
+    .workflow-step h3 { font-size: 28px; }
+
+    .workflow-step p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 24px;
+      line-height: 1.35;
+    }
+
+    .screenshot {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 16px 44px rgba(10, 37, 64, 0.12);
+    }
+
+    .screenshot img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    .screenshot.wide { height: 580px; }
+    .screenshot.hero-screen { height: 500px; }
+    .screenshot.orient-screen { height: 420px; }
+    .screenshot.medium { height: 500px; }
+    .screenshot.short { height: 330px; }
+
+    .capture-note {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.35;
+    }
+
+    .step-list,
+    .interpret-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .step-item,
+    .interpret-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 22px 0;
+      border-top: 2px solid var(--line);
+    }
+
+    .step-item strong,
+    .interpret-item strong {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--steel);
+      color: #fff;
+      font-size: 22px;
+    }
+
+    .step-item p,
+    .interpret-item p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 27px;
+      line-height: 1.38;
+    }
+
+    .resource-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .resource-card { padding: 24px; }
+
+    .resource-card strong {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--steel-dark);
+      font-size: 27px;
+    }
+
+    .resource-card p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 24px;
+      line-height: 1.36;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .research-card { min-height: 124px; padding: 19px 24px; }
+
+    .split-detail {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 44px;
+      align-items: start;
+    }
+
+    .screen-pair {
+      display: grid;
+      grid-template-columns: 0.68fr 1.32fr;
+      gap: 24px;
+    }
+
+    .activity-slide {
+      color: #fff;
+      background:
+        radial-gradient(circle at 88% 74%, rgba(27, 153, 139, 0.19), transparent 34%),
+        linear-gradient(135deg, #0a2540, #0d365b);
+    }
+
+    .activity-slide h2 { color: #f4f8fc; }
+
+    .activity-layout {
+      display: grid;
+      grid-template-columns: 0.76fr 1.24fr;
+      gap: 46px;
+      margin-top: 24px;
+    }
+
+    .activity-brief { padding: 40px; border: 2px solid rgba(183, 215, 242, 0.24); }
+
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .task-card { min-height: 205px; padding: 30px; }
+
+    .decision-callout {
+      margin-top: 26px;
+      padding: 22px 26px;
+      border-left: 7px solid var(--gold);
+      border-radius: 0 14px 14px 0;
+      background: #fff8e6;
+      color: #5d4817;
+      font-size: 26px;
+      line-height: 1.38;
+    }
+
+    .screen-card {
+      display: flex;
+      min-height: 610px;
+      flex-direction: column;
+      overflow: hidden;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .screen-card .screen-image {
+      height: 410px;
+      padding: 12px;
+      border-bottom: 2px solid var(--line);
+      background: #fff;
+    }
+
+    .screen-card .screen-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .screen-card .screen-copy { padding: 24px 28px; }
+
+    .screen-card .screen-copy p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 25px;
+      line-height: 1.38;
+    }
+
+    .transcript-layout {
+      display: grid;
+      grid-template-columns: 1.38fr 0.62fr;
+      gap: 42px;
+      align-items: start;
+    }
+
+    .verify-chain {
+      display: grid;
+      gap: 18px;
+    }
+
+    .verify-step {
+      padding: 26px 28px;
+      border-left: 7px solid var(--steel);
+      border-radius: 0 14px 14px 0;
+      background: var(--sky);
+    }
+
+    .verify-step strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--steel-dark);
+      font-size: 27px;
+    }
+
+    .verify-step p {
+      margin: 0;
+      color: var(--ink);
+      font-size: 25px;
+      line-height: 1.36;
+    }
+
+    .compare-view {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .compare-panel {
+      padding: 28px;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .compare-panel .screenshot { height: 420px; box-shadow: none; }
+
+    .compare-panel p {
+      margin: 20px 0 0;
+      color: var(--slate);
+      font-size: 25px;
+      line-height: 1.38;
+    }
+
+    .macro-panel,
+    .excel-panel {
+      overflow: hidden;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+    }
+
+    .macro-panel .screenshot,
+    .excel-panel .screenshot {
+      height: 470px;
+      border: 0;
+      border-bottom: 2px solid var(--line);
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .excel-panel .screenshot { height: 340px; }
+
+    .macro-copy,
+    .excel-copy { padding: 24px 28px; }
+
+    .macro-copy p,
+    .excel-copy p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 25px;
+      line-height: 1.38;
+    }
+
+    .excel-flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .excel-step {
+      padding: 20px 22px;
+      border-radius: 14px;
+      background: var(--sky);
+      color: var(--navy);
+      font-size: 25px;
+      font-weight: 760;
+      text-align: center;
+    }
+
+    .challenge-brief { padding: 38px; }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 19px;
+    }
+
+    .evidence-card { min-height: 158px; padding: 24px 27px; }
+
+    .evidence-card.final-evidence {
+      grid-column: 1 / -1;
+      min-height: 132px;
+      border-color: #b7d7f2;
+      background: var(--sky);
+    }
+
+    .ready-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .ready-item {
+      min-height: 285px;
+      padding: 36px;
+      border: 2px solid rgba(183, 215, 242, 0.3);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .ready-item .check {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 28px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #fff;
+      font-size: 30px;
+      font-weight: 850;
+    }
+
+    .ready-item p {
+      margin: 0;
+      color: #e5f0f8;
+      font-size: 29px;
+      line-height: 1.4;
+    }
+
+    .exit-ticket {
+      margin-top: 38px;
+      padding: 22px 28px;
+      border-radius: 14px;
+      background: #fff;
+      color: var(--navy);
+      font-size: 27px;
+      font-weight: 700;
+    }
+
+    #controls {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 13px;
+      background: rgba(3, 18, 31, 0.88);
+      backdrop-filter: blur(12px);
+    }
+
+    #controls button {
+      width: 42px;
+      height: 38px;
+      border: 0;
+      border-radius: 8px;
+      background: #173b5b;
+      color: #fff;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    #controls button:hover { background: var(--steel-dark); }
+
+    #counter {
+      min-width: 62px;
+      color: #dce9f3;
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+    }
+
+    #progress {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 19;
+      width: 0;
+      height: 5px;
+      background: var(--steel);
+      transition: width 180ms ease;
+    }
+
+    .screen-reader-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #progress { transition: none; }
+    }
+
+    @media print {
+      html,
+      body { overflow: visible; background: #fff; }
+      #viewport { position: static; display: block; overflow: visible; }
+      #deck { width: auto; height: auto; transform: none !important; box-shadow: none; }
+      .slide { position: relative; display: block !important; width: 1920px; height: 1080px; break-after: page; }
+      #controls,
+      #progress { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="viewport">
+    <main id="deck" aria-live="polite">
+      <section class="slide dark active" data-label="FactSet Fundamentals" role="group" aria-label="Slide 1 of 16: FactSet Fundamentals">
+        <div class="top-rule"></div>
+        <div class="course-tag">Endicott College · Gerrish School of Business</div>
+        <div class="slide-number">01</div>
+        <div class="content">
+          <p class="eyebrow">BUS209 · Fall 2026</p>
+          <h1>FactSet Fundamentals</h1>
+          <p class="lead">Move from a company question to evidence, context, and a professional conclusion.</p>
+          <div class="hero-meta">
+            <div><span>Recurring case</span>Caterpillar Inc. · CAT-US</div>
+            <div><span>Learning goal</span>Use FactSet as a research workflow—not a collection of tabs</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Research challenge" role="group" aria-label="Slide 2 of 16: Research challenge">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Start with the decision</div>
+        <div class="slide-number">02</div>
+        <div class="content">
+          <p class="eyebrow">Case question</p>
+          <h2>What would you need to know before making a recommendation about Caterpillar?</h2>
+          <div class="case-grid">
+            <aside class="case-brief">
+              <span class="case-code">Recurring case · CAT</span>
+              <h3>Begin with uncertainty</h3>
+              <p>A recommendation requires more than a price chart. What evidence would make your conclusion more defensible?</p>
+              <p><strong>Predict first:</strong> Which category would you investigate before opening FactSet?</p>
+            </aside>
+            <div class="question-list">
+              <article class="question-card"><span>Company</span><p>How does CAT make money, and what is changing?</p></article>
+              <article class="question-card"><span>Financials</span><p>What do profitability, growth, leverage, and valuation suggest?</p></article>
+              <article class="question-card"><span>Context</span><p>How does CAT compare with peers and its industry?</p></article>
+              <article class="question-card"><span>Risk</span><p>What do management, markets, and the economy tell us to watch?</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-label="Research workflow" role="group" aria-label="Slide 3 of 16: Research workflow">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Research workflow</div>
+        <div class="slide-number">03</div>
+        <div class="content">
+          <p class="eyebrow">The path through FactSet</p>
+          <h2>One question can organize the entire platform</h2>
+          <div class="workflow">
+            <article class="workflow-step"><strong>01</strong><h3>Orient</h3><p>Search, help, and shortcuts</p></article>
+            <article class="workflow-step"><strong>02</strong><h3>Company</h3><p>Profile, key statistics, and financials</p></article>
+            <article class="workflow-step"><strong>03</strong><h3>Peers</h3><p>Comparable companies and valuation</p></article>
+            <article class="workflow-step"><strong>04</strong><h3>Narrative</h3><p>News, filings, and transcripts</p></article>
+            <article class="workflow-step"><strong>05</strong><h3>Industry</h3><p>Performance, players, and drivers</p></article>
+            <article class="workflow-step"><strong>06</strong><h3>Macro</h3><p>Events and economic context</p></article>
+            <article class="workflow-step"><strong>07</strong><h3>Deliver</h3><p>Excel output and explanation</p></article>
+          </div>
+          <div class="decision-callout"><strong>Research discipline:</strong> move forward only when each screen helps answer the original question.</div>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Orient and navigate" role="group" aria-label="Slide 4 of 16: Orient and navigate">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Orient</div>
+        <div class="slide-number">04</div>
+        <div class="content">
+          <p class="eyebrow">Find your way quickly</p>
+          <h2>Start with the company, then use the shortest route to evidence</h2>
+          <div class="screen-split">
+            <div class="step-list">
+              <div class="step-item"><strong>1</strong><p>Search for <strong>CAT-US</strong> in the FactSet search bar.</p></div>
+              <div class="step-item"><strong>2</strong><p>Use <strong>CG</strong> to open Company Guide.</p></div>
+              <div class="step-item"><strong>3</strong><p>Use the left-side Reports menu to move from overview to deeper research.</p></div>
+            </div>
+            <div>
+              <figure class="screenshot hero-screen orient-screen" style="margin: 0;"><img src="assets/media/image15.png" alt="FactSet Company Guide for Caterpillar with the search bar, reports menu, company profile, and charts visible"></figure>
+              <p class="capture-note">Interface example captured in 2025. Market values shown are historical.</p>
+            </div>
+          </div>
+          <div class="resource-strip">
+            <article class="resource-card"><strong>Search</strong><p>Company, security, person, or function</p></article>
+            <article class="resource-card"><strong>Help</strong><p>Use the question-mark menu in FactSet</p></article>
+            <article class="resource-card"><strong>Learn</strong><p>Use the FactSet e-learning resources linked in Canvas</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-label="Company research map" role="group" aria-label="Slide 5 of 16: Company research map">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Company</div>
+        <div class="slide-number">05</div>
+        <div class="content">
+          <p class="eyebrow">Company Guide</p>
+          <h2>A single ticker opens a map of the business</h2>
+          <figure class="screenshot short" style="margin: 0;"><img src="assets/media/image20.png" alt="FactSet Caterpillar company page showing key statistics and company information"></figure>
+          <div class="research-grid">
+            <article class="research-card"><span>Overview</span><p>Profile and business description</p></article>
+            <article class="research-card"><span>Performance</span><p>Returns and price history</p></article>
+            <article class="research-card"><span>Key statistics</span><p>Market value, beta, and WACC</p></article>
+            <article class="research-card"><span>Financials</span><p>Growth, margins, and leverage</p></article>
+            <article class="research-card"><span>People</span><p>Leadership and key decision-makers</p></article>
+            <article class="research-card"><span>News</span><p>Recent events that may change the view</p></article>
+          </div>
+          <p class="capture-note">Interface example captured in 2025. Market values shown are historical.</p>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Snapshot and WACC" role="group" aria-label="Slide 6 of 16: Snapshot and WACC">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Company evidence</div>
+        <div class="slide-number">06</div>
+        <div class="content">
+          <p class="eyebrow">Move from locating to interpreting</p>
+          <h2>A metric matters only when you can explain what it changes</h2>
+          <div class="split-detail">
+            <div>
+              <div class="interpret-list">
+                <div class="interpret-item"><strong>1</strong><p>Find CAT’s profitability and liquidity measures in Snapshot.</p></div>
+                <div class="interpret-item"><strong>2</strong><p>Open the blue WACC value to see the calculation components.</p></div>
+                <div class="interpret-item"><strong>3</strong><p>Connect the metric to an investment hurdle, trend, or risk—not just a definition.</p></div>
+              </div>
+              <div class="decision-callout"><strong>Decision question:</strong> What return must an investment earn before it creates value?</div>
+            </div>
+            <div>
+              <div class="screen-pair">
+                <figure class="screenshot medium" style="margin: 0;"><img src="assets/media/image23.png" alt="FactSet expanded weighted average cost of capital calculation for Caterpillar"></figure>
+                <figure class="screenshot medium" style="margin: 0;"><img src="assets/media/image24.png" alt="FactSet Caterpillar financial highlights table including profitability and liquidity measures"></figure>
+              </div>
+              <p class="capture-note">Interface example captured in 2025. Values shown are historical.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide activity-slide" data-label="Live metric practice" role="group" aria-label="Slide 7 of 16: Live metric practice">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Live You Try It</div>
+        <div class="slide-number">07</div>
+        <div class="content">
+          <p class="eyebrow">Live You Try It</p>
+          <h2>Find one metric—and make it mean something</h2>
+          <div class="activity-layout">
+            <aside class="activity-brief">
+              <span class="activity-label">Work independently first</span>
+              <h3>Choose one CAT metric</h3>
+              <p>Select WACC, gross margin, revenue growth, or another measure that helps answer the case question.</p>
+              <p>Be ready to explain your reasoning to a partner.</p>
+            </aside>
+            <div class="task-grid">
+              <article class="task-card"><span>01 · FIND</span><p>Where did you locate the metric?</p></article>
+              <article class="task-card"><span>02 · READ</span><p>What does the current value or trend show?</p></article>
+              <article class="task-card"><span>03 · CONTEXT</span><p>What comparison would make the number more useful?</p></article>
+              <article class="task-card"><span>04 · EXPLAIN</span><p>Why could this evidence change a recommendation?</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-label="Comparable companies" role="group" aria-label="Slide 8 of 16: Comparable companies">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Peers</div>
+        <div class="slide-number">08</div>
+        <div class="content">
+          <p class="eyebrow">Comp Analysis</p>
+          <h2>The peer set can change the valuation story</h2>
+          <div class="screen-split">
+            <div class="step-list">
+              <div class="step-item"><strong>1</strong><p>Start with named competitors or FactSet’s industry classifications.</p></div>
+              <div class="step-item"><strong>2</strong><p>Apply region, size, and business-model criteria deliberately.</p></div>
+              <div class="step-item"><strong>3</strong><p>Compare valuation and operating measures—but challenge the median.</p></div>
+            </div>
+            <div>
+              <figure class="screenshot hero-screen" style="margin: 0;"><img src="assets/media/image25.png" alt="FactSet Comp Analysis screen for Caterpillar with peer-selection controls and valuation data"></figure>
+              <p class="capture-note">Interface example captured in 2025. Company values shown are historical.</p>
+            </div>
+          </div>
+          <div class="decision-callout"><strong>Decision question:</strong> Is a company cheap—or are the selected peers simply different?</div>
+        </div>
+      </section>
+
+      <section class="slide activity-slide" data-label="Peer set challenge" role="group" aria-label="Slide 9 of 16: Peer set challenge">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Live You Try It</div>
+        <div class="slide-number">09</div>
+        <div class="content">
+          <p class="eyebrow">Live You Try It</p>
+          <h2>Build—and defend—a better CAT peer set</h2>
+          <div class="activity-layout">
+            <aside class="activity-brief">
+              <span class="activity-label">Partner challenge</span>
+              <h3>Modify one peer-selection rule</h3>
+              <p>Change the industry, geography, market-cap range, or one named company.</p>
+              <p>Compare your results with a partner who made a different choice.</p>
+            </aside>
+            <div class="task-grid">
+              <article class="task-card"><span>01 · RULE</span><p>What selection criterion did you change?</p></article>
+              <article class="task-card"><span>02 · EFFECT</span><p>How did the group median change?</p></article>
+              <article class="task-card"><span>03 · QUALITY</span><p>Did the new group become more comparable?</p></article>
+              <article class="task-card"><span>04 · DEFEND</span><p>Which peer set would you use in a presentation—and why?</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Transcripts and AI themes" role="group" aria-label="Slide 10 of 16: Transcripts and AI themes">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Narrative</div>
+        <div class="slide-number">10</div>
+        <div class="content">
+          <p class="eyebrow">News, research, filings &amp; transcripts</p>
+          <h2>Use AI themes to navigate—then return to the underlying words</h2>
+          <div class="transcript-layout">
+            <div>
+              <figure class="screenshot wide" style="margin: 0;"><img src="assets/media/image28.png" alt="FactSet earnings-call transcript showing sentiment, topics, themes, transcript text, and Transcript Assistant"></figure>
+              <p class="capture-note">Interface example captured in 2025. The earnings-call content is historical.</p>
+            </div>
+            <div class="verify-chain">
+              <article class="verify-step"><strong>1 · Locate</strong><p>Use themes or sentiment to identify a potentially important topic.</p></article>
+              <article class="verify-step"><strong>2 · Verify</strong><p>Read the relevant transcript passage in context.</p></article>
+              <article class="verify-step"><strong>3 · Test</strong><p>Look for financial or operating evidence that supports the statement.</p></article>
+              <article class="verify-step"><strong>4 · Explain</strong><p>Distinguish management’s claim from your analytical conclusion.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide" data-label="Industry overview" role="group" aria-label="Slide 11 of 16: Industry overview">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Industry</div>
+        <div class="slide-number">11</div>
+        <div class="content">
+          <p class="eyebrow">Industry Overview</p>
+          <h2>Company performance is easier to interpret against its industry</h2>
+          <div class="screen-split">
+            <div class="interpret-list">
+              <div class="interpret-item"><strong>1</strong><p>Compare industry return with the broader market.</p></div>
+              <div class="interpret-item"><strong>2</strong><p>Review valuation, profitability, leverage, and growth characteristics.</p></div>
+              <div class="interpret-item"><strong>3</strong><p>Identify the key companies shaping the industry result.</p></div>
+            </div>
+            <div>
+              <figure class="screenshot hero-screen" style="margin: 0;"><img src="assets/media/image32.png" alt="FactSet industry overview for United States trucks, construction, and farm machinery"></figure>
+              <p class="capture-note">Interface example captured in 2025. Returns and company values shown are historical.</p>
+            </div>
+          </div>
+          <div class="decision-callout"><strong>Decision question:</strong> Is CAT outperforming because of company-specific execution or an industry-wide tailwind?</div>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Industry depth" role="group" aria-label="Slide 12 of 16: Industry depth">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Industry</div>
+        <div class="slide-number">12</div>
+        <div class="content">
+          <p class="eyebrow">Two ways to add industry context</p>
+          <h2>Use industry financials for patterns and sector intelligence for focused questions</h2>
+          <div class="compare-view">
+            <article class="compare-panel">
+              <h3>Industry financials</h3>
+              <figure class="screenshot" style="margin: 0;"><img src="assets/media/image33.png" alt="FactSet industry financials table showing multi-year growth measures"></figure>
+              <p>Compare growth, margins, ratios, and per-share measures across time.</p>
+            </article>
+            <article class="compare-panel">
+              <h3>Sector intelligence</h3>
+              <figure class="screenshot" style="margin: 0;"><img src="assets/media/image31.png" alt="FactSet Sector Intelligence navigation showing a Data Center Intelligence report"></figure>
+              <p>Use focused reports when a specific business driver requires deeper industry context.</p>
+            </article>
+          </div>
+          <p class="capture-note">Interface examples captured in 2025. Values and available reports may change.</p>
+        </div>
+      </section>
+
+      <section class="slide" data-label="Macro context" role="group" aria-label="Slide 13 of 16: Macro context">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Macro</div>
+        <div class="slide-number">13</div>
+        <div class="content">
+          <p class="eyebrow">Economic context</p>
+          <h2>Macro events can change the meaning of company evidence</h2>
+          <div class="macro-grid">
+            <article class="macro-panel">
+              <figure class="screenshot" style="margin: 0;"><img src="assets/media/image40.png" alt="FactSet economic calendar showing upcoming events, consensus, actual, surprise, and prior values"></figure>
+              <div class="macro-copy"><h3>Economic Calendar</h3><p>Identify the next high-impact event and the market expectation before it is released.</p></div>
+            </article>
+            <article class="macro-panel">
+              <figure class="screenshot" style="margin: 0;"><img src="assets/media/image41.png" alt="FactSet country and region corporate finance snapshot for the United States"></figure>
+              <div class="macro-copy"><h3>Country &amp; Region</h3><p>Connect company research to monetary, fiscal, industrial, and country-level conditions.</p></div>
+            </article>
+          </div>
+          <p class="capture-note">Interface examples captured in 2025. Calendar events and values shown are historical.</p>
+        </div>
+      </section>
+
+      <section class="slide soft" data-label="Excel workflow" role="group" aria-label="Slide 14 of 16: Excel workflow">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Deliver</div>
+        <div class="slide-number">14</div>
+        <div class="content">
+          <p class="eyebrow">Office Integration</p>
+          <h2>Move FactSet evidence into Excel without rekeying the data</h2>
+          <div class="excel-grid">
+            <article class="excel-panel">
+              <figure class="screenshot" style="margin: 0;"><img src="assets/media/image37.png" alt="FactSet Office Integration Template Library showing downloadable company templates"></figure>
+              <div class="excel-copy"><h3>Choose a template</h3><p>Start with a structure that fits the research question.</p></div>
+            </article>
+            <article class="excel-panel">
+              <figure class="screenshot" style="margin: 0;"><img src="assets/media/image39.png" alt="FactSet Excel supply-chain template for Apple with identifiers, suppliers, countries, and sales percentages"></figure>
+              <div class="excel-copy"><h3>Refresh and interpret</h3><p>Inputs and FactSet formulas create a repeatable analytical deliverable.</p></div>
+            </article>
+          </div>
+          <div class="excel-flow">
+            <div class="excel-step">1 · Enter the identifier</div>
+            <div class="excel-step">2 · Refresh FactSet formulas</div>
+            <div class="excel-step">3 · Explain the output</div>
+          </div>
+          <p class="capture-note">Interface and template examples captured in 2025.</p>
+        </div>
+      </section>
+
+      <section class="slide" data-label="Integrated research challenge" role="group" aria-label="Slide 15 of 16: Integrated research challenge">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Integrated challenge</div>
+        <div class="slide-number">15</div>
+        <div class="content">
+          <p class="eyebrow">Bring the workflow together</p>
+          <h2>Build a five-part evidence brief on Caterpillar</h2>
+          <div class="challenge-grid">
+            <aside class="challenge-brief">
+              <span class="activity-label">Team research challenge</span>
+              <h3>Answer one recommendation question</h3>
+              <p>Use FactSet to assemble evidence, then decide what the evidence supports and what remains uncertain.</p>
+              <p><strong>Rule:</strong> every claim must point back to a screen, source, or calculation.</p>
+            </aside>
+            <div class="evidence-grid">
+              <article class="evidence-card"><span>01 · Company</span><p>One operating or financial strength</p></article>
+              <article class="evidence-card"><span>02 · Peers</span><p>One comparison that changes the view</p></article>
+              <article class="evidence-card"><span>03 · Narrative</span><p>One management claim and its supporting evidence</p></article>
+              <article class="evidence-card"><span>04 · Context</span><p>One industry or macro factor that matters</p></article>
+              <article class="evidence-card final-evidence"><span>05 · Conclusion</span><p>State the recommendation, the strongest evidence, and the biggest remaining uncertainty.</p></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide dark" data-label="Ready to research" role="group" aria-label="Slide 16 of 16: Ready to research">
+        <div class="top-rule"></div>
+        <div class="course-tag">BUS209 · Ready to research</div>
+        <div class="slide-number">16</div>
+        <div class="content">
+          <p class="eyebrow">What success looks like</p>
+          <h2>You are ready when you can connect three things</h2>
+          <div class="ready-grid">
+            <article class="ready-item"><div class="check">✓</div><p>A financial question worth investigating</p></article>
+            <article class="ready-item"><div class="check">✓</div><p>The FactSet evidence that helps answer it</p></article>
+            <article class="ready-item"><div class="check">✓</div><p>A conclusion that explains what the evidence means</p></article>
+          </div>
+          <div class="exit-ticket">Exit ticket: Which part of the FactSet workflow will be most useful in your next assignment—and why?</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="progress" aria-hidden="true"></div>
+  <nav id="controls" aria-label="Slide controls">
+    <button id="previous" type="button" aria-label="Previous slide">←</button>
+    <span id="counter" aria-live="polite">1 / 16</span>
+    <button id="next" type="button" aria-label="Next slide">→</button>
+    <button id="fullscreen" type="button" aria-label="Enter fullscreen">⛶</button>
+  </nav>
+  <p class="screen-reader-only" id="keyboard-help">Use the left and right arrow keys to move between slides. Press F for fullscreen.</p>
+
+  <script>
+    (() => {
+      const deck = document.getElementById('deck');
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const counter = document.getElementById('counter');
+      const progress = document.getElementById('progress');
+      const previous = document.getElementById('previous');
+      const next = document.getElementById('next');
+      const fullscreen = document.getElementById('fullscreen');
+      let index = Math.max(0, Math.min(slides.length - 1, Number(location.hash.slice(1)) - 1 || 0));
+
+      function scaleDeck() {
+        const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+        deck.style.transform = `scale(${scale})`;
+      }
+
+      function showSlide(target, updateHash = true) {
+        index = Math.max(0, Math.min(slides.length - 1, target));
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle('active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+        });
+        counter.textContent = `${index + 1} / ${slides.length}`;
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+        document.title = `BUS209 · ${slides[index].dataset.label}`;
+        if (updateHash) history.replaceState(null, '', `#${index + 1}`);
+      }
+
+      function move(delta) { showSlide(index + delta); }
+
+      previous.addEventListener('click', () => move(-1));
+      next.addEventListener('click', () => move(1));
+      fullscreen.addEventListener('click', () => {
+        if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.target instanceof HTMLAnchorElement) return;
+        if (['ArrowRight', 'PageDown', ' '].includes(event.key)) { event.preventDefault(); move(1); }
+        if (['ArrowLeft', 'PageUp'].includes(event.key)) { event.preventDefault(); move(-1); }
+        if (event.key === 'Home') { event.preventDefault(); showSlide(0); }
+        if (event.key === 'End') { event.preventDefault(); showSlide(slides.length - 1); }
+        if (event.key.toLowerCase() === 'f') fullscreen.click();
+      });
+
+      window.addEventListener('resize', scaleDeck);
+      window.addEventListener('hashchange', () => {
+        const target = Number(location.hash.slice(1)) - 1;
+        if (Number.isFinite(target)) showSlide(target, false);
+      });
+
+      scaleDeck();
+      showSlide(index, false);
+    })();
+  </script>
+</body>
+</html>
