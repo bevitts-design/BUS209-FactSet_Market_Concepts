@@ -1,0 +1,288 @@
+{
+  "pptx": "/Users/bethanyevittsair2/Library/CloudStorage/OneDrive-Personal/EC_Teaching/BUS209 FactSet Market Concepts/BME- FA2025 - FactSet/FactSet-Equity Markets.pptx",
+  "slides": [
+    {
+      "slide": 1,
+      "texts": [
+        {
+          "text": "BMC \u2013 Equity Valuation",
+          "box": null
+        },
+        {
+          "text": "Absolute vs Relative",
+          "box": null
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 2,
+      "texts": [],
+      "images": [
+        {
+          "src": "assets/media/image1.png",
+          "box": {
+            "x": 597964,
+            "y": 0,
+            "cx": 10996072,
+            "cy": 6858000
+          }
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "texts": [
+        {
+          "text": "Recent Events \u2013 March 2024",
+          "box": null
+        },
+        {
+          "text": "1. Initial Public Offering \u2013 Reddit (RDDT)\\nCNBC Headline \u201c Reddit pops 48% in NYSE debut after selling shares at top of range\u201d\\nFinancial Times \u201cBlowout Reddit debut raises hopes of revival in dormant IPO market\u201d\\n2. Stock Split for Chipotle 50:1 (CMG)\\nYahoo Finance \u201c Chipotle stock jumps after announcing 50-1 stock split",
+          "box": null
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 4,
+      "texts": [
+        {
+          "text": "Market Capitalization",
+          "box": {
+            "x": 652481,
+            "y": 1382486,
+            "cx": 3547581,
+            "cy": 4093028
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 5,
+      "texts": [
+        {
+          "text": "Adjustment to Shares Outstanding",
+          "box": null
+        },
+        {
+          "text": "Stock splits - Changes nothing fundamentally \u2013 price changes by the split ratio in addition to the shares \u2013 no change in market capitalization\\nTypes of stock splits\\nForward Stock split \u2013examples 2:1 or 3:1\\nA corporate action whereby for every share held before the split, each stockholder will have two or three shares, respectively, after the split.\\nReverse stock split \u2013 opposite of a forward stock split. The number of shares outstanding is reduced and the price of the stock increases by the ratio of the split\\nWhy do a stock split transaction?\\nLower absolute stock price allows individuals to buy more full shares vs partial shares\\nBetter overall liquidity in the market\\nRaise share price above a minimum regulator threshold for delisting",
+          "box": {
+            "x": 677334,
+            "y": 1433945,
+            "cx": 8596668,
+            "cy": 5049982
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 6,
+      "texts": [
+        {
+          "text": "What is a Fair Market Capitalization for a company's stock?\\n\\nValuation Methodologies:  Absolute vs Relative\\n",
+          "box": {
+            "x": 652481,
+            "y": 1382486,
+            "cx": 3547581,
+            "cy": 4093028
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 7,
+      "texts": [
+        {
+          "text": "Absolute Valuation \u2013 Discounted Cash Flow Valuation 5 steps\\n",
+          "box": null
+        },
+        {
+          "text": "Estimate long term future cashflows for a firm (eternity???)\\nDetermine Discount Rate to use -  WACC \u2013 weighted average cost of capital\\nDetermine cost of debt\\nDetermine cost of equity\\nDetermine weighted average\\nTake the estimated future cash flows/divide by WACC to get the value of the future earnings today\\nValue of cashflows diminish the further out you go\\nHigher WACC erodes the value of future cashflows \u2013 inherently more risk and volatility in future cash flows\\nDeduct the firm\u2019s indebtedness and add in the firm\u2019s cash to derive the est. market capitalization\\nDivide estimated market cap by the number of share to get a fair share price from the valuation",
+          "box": {
+            "x": 677334,
+            "y": 2160589,
+            "cx": 10844106,
+            "cy": 4221923
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 8,
+      "texts": [
+        {
+          "text": "Cost of equity = CAPM \u2013 capital asset pricing model \u2013 uses stock beta to account for the riskiness of stocks\\n",
+          "box": null
+        },
+        {
+          "text": "Take 10 year government bond yield \u2013 WB <go>\\n10yr Maturity\u2013 risk free rate\\nIdentify the historic market return \u2013 CRP <go>\\nCountry Risk Premium\\nCalculate the market risk premium\\nCRP <go>, click on US\\nMarket return \u2013 RF Rate = Mkt Risk Premium\\nEstimate the beta of the stock\\nBETA <go> - based on a regression (daily return from Delta/SP500) \u2013 measure of sensitivity to the market overall movement\\nUse the adjusted Beta number\\nMultiply the market risk premium (5.937) by beta \u2013 to get equity specific risk premium(ERP)\\nTake the ERP number and add back the risk -free rate to get the cost of equity based on CAPM",
+          "box": {
+            "x": 677334,
+            "y": 2160589,
+            "cx": 3795812,
+            "cy": 3880773
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image2.jpeg",
+          "box": {
+            "x": 4473146,
+            "y": 1720335,
+            "cx": 7041520,
+            "cy": 4433330
+          }
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "texts": [
+        {
+          "text": "Important Bloomberg screens\\nex. Delta Airlines -  DAL <Equity>\\n",
+          "box": null
+        },
+        {
+          "text": "Free Cash flow- cash on hand for bond holders and shareholders \u2013 FA, C/F Tab\\nEstimate discount rate - based on the proportion of a firm's debt & Equity financing -\\nWACC \u2013 Weight (Equity/Debt) X Cost (Equity/Debt)\\nCost of debt is calculated from the yield on a firm\u2019s bonds   GC <go>.\\nCorporate bonds trade at a spread difference to government bond yields due to the great risk\\nCost of equity\\n1 method - CAPM \u2013 capital asset pricing model \u2013 uses stock beta to account for the riskiness of stocks\\nWB <go>\\nCRP <go>Country Risk Premium\\nMarket return \u2013 RF Rate = Mkt Risk Premium CRP <go>, click on US\\nBETA <go> - based on a regression (daily return from Delta/SP500) \u2013 measure of sensitivity to the market overall movement\\nMultiply the market risk premium (5.937) by beta \u2013 to get equity specific risk premium(ERP)\\nTake the ERP number and add back the risk -free rate to get the cost of equity based on CAPM\\nEnterprise Value  - EV <go>\\nFair Share Price = Market Capitalization/Number of shares",
+          "box": null
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 10,
+      "texts": [
+        {
+          "text": "Relative Valuation",
+          "box": null
+        },
+        {
+          "text": "Relative Valuation \u2013 compared to other companies or the market to determine relative value \u2013 determines if a company is over valued, under valued or fairly valued. It does not determine the exact fair market price of the stock.\\nPros \u2013 easier to understand \u2013 comparison shopping. Simple to calculate, does not demand long term forecasts,\\nCons \u2013 directional, hard to find truly comparable companies, presupposes that the company you are comparing it to is fairly valued too\\n\\nStep 1: Choose a relevant metric(s)\\nDividend Yield\\nP/E Ratio\\nStep 2:  Choose what to compare that metric too\\nSelf\\nPeers\\nMarket\\n\\n",
+          "box": null
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 11,
+      "texts": [
+        {
+          "text": "Three Relative Valuation Metrics",
+          "box": {
+            "x": 677334,
+            "y": 609600,
+            "cx": 8596668,
+            "cy": 1320800
+          }
+        },
+        {
+          "text": "Dividend Yield :\\nDVD <go>\u2013 Dividend Function Ind Gross Yield on BBG screen is annualized\\nDividend Yield = $ dividend per share/ $ price per share\\nEarnings Yield :\\nEarnings yield = $ earnings per share/ $ price per share\\nEST EPS on DES screen\\nP/E Ratio: (reciprocal of earnings yield)\\nP/E Ratio = $ price per share/ $earnings per share\\nGF <go> Graph function \u2013 show the mirror image of earnings yield and P/E ratio\\nEarnings trend <go>\\nEarning Trend(net income) * P/E ratio = Price(market cap)\\nE*(P/E)= P",
+          "box": {
+            "x": 677334,
+            "y": 1391964,
+            "cx": 5742921,
+            "cy": 3021010
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image3.jpeg",
+          "box": {
+            "x": 3548794,
+            "y": 4231109,
+            "cx": 7695312,
+            "cy": 2017291
+          }
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "texts": [
+        {
+          "text": "Valuation Methodology Summary",
+          "box": null
+        },
+        {
+          "text": "Absolute Valuation Summary\\nAbsolute valuation involves the discount of future cash flows\\nFuture profits in the long term are worth less than profits in the short term\\nGood financial models balance simplicity with insight\\nThe concept of absolute valuation is theoretically perfect\\nThe outputs from absolute valuations are usually precisely wrong\\nRelative Value Summary\\nRelative Valuation is the quick and easy comparison of one valuation to another\\nThe risk of relative valuation is being led astray by unrealistic reference points\\nEarnings and multiples are used to estimate fair share prices\\nFast growing companies warrant higher multiples and vice versa\\nThe state of the economy is a key driver of relative valuation",
+          "box": {
+            "x": 677334,
+            "y": 1391963,
+            "cx": 8596668,
+            "cy": 3880773
+          }
+        }
+      ],
+      "images": []
+    },
+    {
+      "slide": 13,
+      "texts": [
+        {
+          "text": "Equity Module & Terminal Function Review",
+          "box": {
+            "x": 322119,
+            "y": 595589,
+            "cx": 10719536,
+            "cy": 901148
+          }
+        },
+        {
+          "text": "Index movements are driven by movements in member stocks\\nThe volatility of earnings leads to volatility of share prices\\nUncovering industry drives is key to estimate earnings\\nAbsolute valuation is in theory perfect but has practical limitations\\nRelative valuation is easier but sensitive to earnings growth - & the right peers\\nRoller coaster \u2013 Economy. Earnings, Stock Markets \u2013 future is unknowable",
+          "box": {
+            "x": 5452515,
+            "y": 2024459,
+            "cx": 6417366,
+            "cy": 3693319
+          }
+        }
+      ],
+      "images": [
+        {
+          "src": "assets/media/image4.jpeg",
+          "box": {
+            "x": 322119,
+            "y": 1930400,
+            "cx": 4457700,
+            "cy": 3881437
+          }
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "texts": [
+        {
+          "text": "Equity Paper & Presentation\\nInstructions",
+          "box": null
+        },
+        {
+          "text": "Use EQS - Equity Screening to choose a US based publicly traded company\\nUsing 3 different BBG screens tell us about the industry, customers and suppliers\\nCCB, IMAP, ICS, SPLC, BI,\\nTell us about the company\\nWhat indexes and exchanges does this company belong too?\\nEarnings expectations\\nRevenue expectations\\nHow are analyst predicting this stock will perform?\\nExplain the company\u2019s Weighted Average Cost of Capital (WACC)?\\nWhat is its cost of equity?\\nWhat is its cost of debt?\\nWhat is the beta of the company?\\nUsing the DVD function tell us about this company's dividend profile?\\nWould you recommend this stock? Why?",
+          "box": {
+            "x": 758536,
+            "y": 2015836,
+            "cx": 10510826,
+            "cy": 4247317
+          }
+        },
+        {
+          "text": "For paper:  3-4 pages including graphs and answers\\nFor presentation: Be prepared to show 5+ relevant Bloomberg screens",
+          "box": {
+            "x": 922638,
+            "y": 6078487,
+            "cx": 8351364,
+            "cy": 646331
+          }
+        }
+      ],
+      "images": []
+    }
+  ]
+}
